@@ -1,4 +1,4 @@
-﻿/* Portfolio visual system. These styles override the starter page
+/* Portfolio visual system. These styles override the starter page
    without deleting the original Vite stylesheets. */
 :root {
   font-family: Arial, Helvetica, sans-serif;
@@ -464,5 +464,250 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
 @media (max-width: 600px) {
   .portfolio .appearance-panel {
     justify-content: flex-start;
+  }
+}
+/* Project row links and text colors v1 */
+
+/* Make the full project row clickable. */
+.portfolio .project-row {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.portfolio .project-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+/* Three restrained project accent colors. */
+.portfolio .project-row:nth-child(3n+1) {
+  --project-title: #285477;
+}
+
+.portfolio .project-row:nth-child(3n+2) {
+  --project-title: #21665e;
+}
+
+.portfolio .project-row:nth-child(3n+3) {
+  --project-title: #704e79;
+}
+
+.portfolio .project-row .project-info h3,
+.portfolio.theme-dark .project-row .project-info h3 {
+  color: var(--project-title) !important;
+  -webkit-text-fill-color: var(--project-title) !important;
+}
+
+.portfolio .project-row .project-category {
+  color: var(--project-title) !important;
+  -webkit-text-fill-color: var(--project-title) !important;
+  font-weight: 700;
+}
+
+/* Improve the selected projects heading. */
+.portfolio .work-section .section-heading h2 {
+  color: #263f59 !important;
+  -webkit-text-fill-color: #263f59 !important;
+}
+
+/* Subtle accent on the introduction and profile. */
+.portfolio .hero-bottom p {
+  color: #344e59;
+}
+
+.portfolio .about-lead {
+  color: #285451;
+}
+
+/* Dark mode uses lighter accent colors. */
+.portfolio.theme-dark .project-row:nth-child(3n+1) {
+  --project-title: #a4d3ef;
+}
+
+.portfolio.theme-dark .project-row:nth-child(3n+2) {
+  --project-title: #9cdecf;
+}
+
+.portfolio.theme-dark .project-row:nth-child(3n+3) {
+  --project-title: #dfbce9;
+}
+
+.portfolio.theme-dark .work-section .section-heading h2 {
+  color: #e1e9f3 !important;
+  -webkit-text-fill-color: #e1e9f3 !important;
+}
+
+.portfolio.theme-dark .hero-bottom p {
+  color: #d6e3ea;
+}
+
+.portfolio.theme-dark .about-lead {
+  color: #c1e7df;
+}
+
+/* Preserve existing hover behavior. */
+.portfolio .project-row:hover .project-info h3 {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+/* Keep motion minimal. */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio .project-row {
+    transition: none;
+  }
+}
+
+/* Employer logos v1 */
+.portfolio .employer-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.portfolio .employer-heading img {
+  width: 78px;
+  height: 58px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.portfolio .employer-heading h3 {
+  margin: 0;
+  color: var(--ink);
+}
+
+.portfolio.theme-dark .employer-heading h3 {
+  color: #f5f5f1;
+}
+
+@media (max-width: 600px) {
+  .portfolio .employer-heading img {
+    width: 64px;
+    height: 50px;
+  }
+}
+
+/* Final editorial palette 2026 */
+
+/* Neutral, cool-toned surfaces without gradients. */
+:root,
+body {
+  background: #f7f9fb;
+}
+
+.portfolio.theme-light {
+  --paper: #f7f9fb;
+  --ink: #1b2a35;
+  --accent: #315f73;
+  --line: #ccd6dd;
+}
+
+.portfolio.theme-light .site-header,
+.portfolio.theme-light .work-section,
+.portfolio.theme-light .site-footer {
+  background: #ffffff;
+}
+
+.portfolio.theme-light .hero {
+  background: #f7f9fb;
+}
+
+/* About: a distinct, cooler background. */
+.portfolio.theme-light .about-section {
+  background: #e7eff3 !important;
+}
+
+.portfolio.theme-light .about-section .section-heading h2 {
+  color: #203b50 !important;
+  -webkit-text-fill-color: #203b50 !important;
+}
+
+.portfolio.theme-light .about-lead {
+  color: #244d60;
+  border-left: 3px solid #527f91;
+  padding-left: 23px;
+}
+
+.portfolio.theme-light .about-personal,
+.portfolio.theme-light .experience-list p {
+  color: #344b59;
+}
+
+.portfolio.theme-light .experience-list > div {
+  border-color: #bacbd4;
+}
+
+/* Alternate surfaces between sections. */
+.portfolio.theme-light .profile-section {
+  background: #ffffff;
+}
+
+.portfolio.theme-light .education-section {
+  background: #edf3f6;
+}
+
+.portfolio.theme-light .project-row:hover {
+  background: #eaf2f5;
+}
+
+.portfolio.theme-light .contact-section {
+  background: #173041;
+  color: #ffffff;
+}
+
+/* Corresponding dark-mode surfaces. */
+.portfolio.theme-dark {
+  --paper: #192630;
+  --ink: #edf3f6;
+  --accent: #a2c9d8;
+  --line: #40515d;
+}
+
+.portfolio.theme-dark .site-header,
+.portfolio.theme-dark .work-section,
+.portfolio.theme-dark .site-footer {
+  background: #1b2a34;
+}
+
+.portfolio.theme-dark .hero {
+  background: #192630;
+}
+
+.portfolio.theme-dark .about-section {
+  background: #273c4a !important;
+}
+
+.portfolio.theme-dark .about-lead {
+  color: #d5e8ef;
+  border-left: 3px solid #86b6c8;
+  padding-left: 23px;
+}
+
+.portfolio.theme-dark .profile-section {
+  background: #1b2a34;
+}
+
+.portfolio.theme-dark .education-section {
+  background: #223540;
+}
+
+.portfolio.theme-dark .contact-section {
+  background: #101e28;
+}
+
+.portfolio.theme-dark .project-row:hover {
+  background: #304655;
+}
+
+@media (max-width: 700px) {
+  .portfolio .about-lead {
+    padding-left: 16px;
   }
 }

@@ -1,6 +1,7 @@
 ﻿import { useTranslation } from "react-i18next";
 import { professional } from "../data/professional";
 import TechnologyLogo from "./TechnologyLogo";
+import EducationLogo from "./EducationLogo";
 import "../styles/professional.css";
 
 export default function ProfessionalSections() {
@@ -58,10 +59,16 @@ export default function ProfessionalSections() {
             <article className="professional-row" key={item.period}>
               <span className="education-period">{item.period}</span>
 
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.institution}</p>
-                <p>{item.location}</p>
+              <div className="education-entry">
+                <EducationLogo
+                  title={item.title}
+                  institution={item.institution}
+                />
+                <div className="education-text">
+                  <h3>{item.title}</h3>
+                  <p>{item.institution}</p>
+                  <p>{item.location}</p>
+                </div>
               </div>
             </article>
           ))}

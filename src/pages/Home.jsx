@@ -1,4 +1,6 @@
 ﻿import "../styles/portfolio.css";
+import { Link } from "react-router-dom";
+import { projectSlugByName } from "../data/projects";
 import ProfessionalSections from "../components/ProfessionalSections";
 import { useTranslation } from "react-i18next";
 import useAppearance from "../hooks/useAppearance";
@@ -56,14 +58,14 @@ export default function Home() {
           </div>
           <div className="project-list">
             {projects.map(([number, name, category, description]) => (
-              <article className="project-row" key={number}>
+              <Link className="project-row" key={number} to={"/projects/" + projectSlugByName[name]}>
                 <span className="project-number">{number}</span>
                 <div className="project-info">
                   <h3>{name}</h3>
                   <p>{t("portfolio.projects." + number + ".desc")}</p>
                 </div>
                 <span className="project-category">{t("portfolio.projects." + number + ".category")}</span>
-              </article>
+              </Link>
             ))}
           </div>
           <a className="text-link external-link" href="https://github.com/DevRumiTech" target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a>
@@ -82,13 +84,13 @@ export default function Home() {
             <div className="experience-list">
               <div>
                 <span className="small-label">{t("portfolio.current")}</span>
-                <h3>Rafisa</h3><p>{t("portfolio.rafisaLocation")}</p>
+                <div className="employer-heading"><img src="/logos/rafisa.png" alt="Rafisa logo" /><h3>Rafisa</h3></div><p>{t("portfolio.rafisaLocation")}</p>
                 <p>{t("portfolio.rafisaRole")}</p>
                 <p>{t("portfolio.rafisaDates")}</p>
               </div>
               <div>
                 <span className="small-label">{t("portfolio.previous")}</span>
-                <h3>Gaea21 NGO</h3><p>{t("portfolio.gaeaLocation")}</p>
+                <div className="employer-heading"><img src="/logos/gaea21.png" alt="Gaea21 logo" /><h3>Gaea21 NGO</h3></div><p>{t("portfolio.gaeaLocation")}</p>
                 <p>{t("portfolio.gaeaRole")}</p>
                 <p>{t("portfolio.gaeaDates")}</p>
               </div>

@@ -1,0 +1,149 @@
+﻿/* Individual project pages use the existing editorial design. */
+.portfolio.project-detail {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.portfolio .project-detail-main {
+  width: min(100%, 1250px);
+  margin: 0 auto;
+  padding: 65px 6% 110px;
+}
+
+.portfolio .project-back {
+  display: inline-block;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio .detail-heading {
+  margin: 90px 0 40px;
+  max-width: 900px;
+}
+
+.portfolio .detail-heading h1 {
+  margin: 22px 0;
+  color: var(--ink);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.portfolio .detail-summary {
+  font-size: clamp(17px, 2.2vw, 24px);
+  line-height: 1.6;
+  max-width: 760px;
+  color: var(--ink);
+}
+
+.portfolio .detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin: 40px 0 80px;
+}
+
+.portfolio .detail-actions a {
+  display: inline-block;
+  padding: 13px 19px;
+  border: 1px solid var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.portfolio .detail-actions a:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.portfolio .detail-notice {
+  color: var(--ink);
+  opacity: .8;
+  font-size: 14px;
+}
+
+.portfolio .detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10%;
+  border-top: 1px solid var(--line);
+  padding-top: 35px;
+}
+
+.portfolio .detail-columns h2 {
+  font-size: 21px;
+  color: var(--ink);
+  font-weight: 700;
+  margin: 0 0 30px;
+}
+
+.portfolio .detail-stack,
+.portfolio .detail-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio .detail-stack li,
+.portfolio .detail-features li {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.portfolio .bottom-back {
+  margin-top: 95px;
+}
+
+.project-missing {
+  padding: 75px 8%;
+}
+
+@media (max-width: 700px) {
+  .portfolio .project-detail-main {
+    padding: 35px 5% 80px;
+  }
+
+  .portfolio .detail-heading {
+    margin-top: 50px;
+  }
+
+  .portfolio .detail-columns {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .portfolio .detail-actions {
+    margin-bottom: 50px;
+  }
+}
+
+/* Technology logos within project case studies */
+.portfolio .detail-stack li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.portfolio .detail-stack .technology-logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.portfolio .detail-stack .technology-logo-letter {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}

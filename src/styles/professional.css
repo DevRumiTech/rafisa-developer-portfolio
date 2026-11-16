@@ -143,3 +143,70 @@
     gap: 15px;
   }
 }
+
+/* Education logos */
+.portfolio .education-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.portfolio .education-text {
+  min-width: 0;
+}
+
+.portfolio .education-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio .hearc-logo {
+  border: 1px solid var(--line);
+  background: #7c2230;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+
+.portfolio .meta-logo {
+  color: #1166d8;
+}
+
+.portfolio .meta-logo svg {
+  width: 58px;
+  height: 32px;
+}
+
+.portfolio.theme-dark .hearc-logo {
+  background: #9e3245;
+  border-color: #6b7378;
+}
+
+.portfolio.theme-dark .meta-logo {
+  color: #7fb2ff;
+}
+
+@media (max-width: 700px) {
+  .portfolio .education-entry {
+    gap: 14px;
+  }
+
+  .portfolio .education-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .portfolio .hearc-logo {
+    font-size: 12px;
+  }
+
+  .portfolio .meta-logo svg {
+    width: 48px;
+    height: 28px;
+  }
+}
