@@ -1,0 +1,310 @@
+﻿/* Portfolio visual system. These styles override the starter page
+   without deleting the original Vite stylesheets. */
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1a1b1a;
+  background: #f5f3ed;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
+#root { width: 100%; max-width: none; margin: 0; padding: 0; text-align: left; }
+
+.portfolio {
+  --ink: #1a1b1a;
+  --paper: #f5f3ed;
+  --accent: #344b5a;
+  --line: #c9c8c1;
+  color: var(--ink);
+  background: var(--paper);
+  min-height: 100vh;
+}
+.portfolio a { color: inherit; text-decoration: none; }
+.portfolio a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.portfolio a:hover { color: var(--accent); }
+
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--ink);
+  padding: 24px 5%;
+}
+.wordmark { font-size: 31px; font-weight: 900; letter-spacing: -3px; }
+.wordmark span, .accent-period { color: var(--accent); }
+.site-header nav { display: flex; gap: 35px; }
+.site-header nav a { font-size: 13px; font-weight: 600; }
+.location { justify-self: end; font-size: 10px; letter-spacing: 1.5px; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 19% 1fr;
+  min-height: 570px;
+  border-bottom: 1px solid var(--ink);
+}
+.hero-rail {
+  border-right: 1px solid var(--line);
+  padding: 39px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.hero-rail span:last-child { writing-mode: vertical-rl; }
+.hero-content { padding: 90px 7% 55px; }
+.eyebrow, .section-index, .small-label {
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  font-weight: 700;
+}
+.accent-mark {
+  display: inline-block;
+  width: 9px; height: 9px;
+  background: var(--accent);
+  margin-right: 10px;
+}
+.hero h1 {
+  font-size: clamp(60px, 8.3vw, 140px);
+  line-height: .98;
+  letter-spacing: -.075em;
+  font-weight: 800;
+  margin: 32px 0 65px;
+}
+.hero h1 span {
+  display: block;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.065em;
+  color: var(--accent);
+}
+.hero-bottom {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+.hero-bottom p {
+  max-width: 420px;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+.text-link {
+  display: inline-flex;
+  gap: 35px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.section-shell { padding: 90px 5% 110px; }
+.section-heading {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  align-items: start;
+  margin-bottom: 65px;
+}
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(40px, 5.5vw, 78px);
+  font-weight: 700;
+  letter-spacing: -.06em;
+  line-height: 1.05;
+}
+.project-row {
+  display: grid;
+  grid-template-columns: 8% 1fr 24%;
+  gap: 20px;
+  align-items: center;
+  padding: 30px 12px;
+  border-top: 1px solid var(--line);
+  transition: padding .25s ease, background .25s ease;
+}
+.project-row:last-child { border-bottom: 1px solid var(--line); }
+.project-row:hover { padding-left: 25px; background: #ece9e0; }
+.project-number, .project-category {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+.project-category { text-align: right; }
+.project-info h3 {
+  font-size: clamp(24px, 3vw, 40px);
+  letter-spacing: -.05em;
+  margin: 0 0 8px;
+}
+.project-info p { font-size: 13px; color: #666760; margin: 0; }
+.external-link { margin-top: 35px; }
+
+.about-section { background: #e8e5dc; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13%; }
+.about-lead {
+  font-size: clamp(23px, 3vw, 40px);
+  line-height: 1.3;
+  letter-spacing: -.04em;
+  margin-top: 0;
+}
+.about-personal { font-size: 14px; line-height: 1.7; }
+.experience-list > div {
+  border-top: 1px solid #b8b6ad;
+  padding: 20px 0 25px;
+}
+.experience-list h3 { font-size: 24px; margin: 15px 0 6px; }
+.experience-list p { margin: 6px 0; font-size: 13px; }
+
+.contact-section { background: var(--ink); color: var(--paper); }
+.contact-section h2 {
+  font-size: clamp(65px, 10vw, 150px);
+  line-height: .95;
+  letter-spacing: -.08em;
+  margin: 65px 0;
+}
+.contact-email {
+  display: inline-flex;
+  gap: 50px;
+  border-bottom: 1px solid var(--paper);
+  padding-bottom: 14px;
+  font-size: 20px;
+}
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 5%;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 800px) {
+  .site-header { grid-template-columns: 1fr auto; gap: 20px; }
+  .location { display: none; }
+  .site-header nav { gap: 16px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-rail { flex-direction: row; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 5%; }
+  .hero-rail span:last-child { writing-mode: initial; }
+  .hero-content { padding: 75px 5%; }
+  .hero h1 { margin-bottom: 45px; }
+  .hero-bottom { align-items: start; flex-direction: column; }
+  .section-shell { padding: 65px 5%; }
+  .section-heading { grid-template-columns: 1fr; gap: 20px; }
+  .project-row { grid-template-columns: 40px 1fr; }
+  .project-category { grid-column: 2; text-align: left; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .site-footer { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .project-row { transition: none; }
+}
+
+/* Employer portfolio refinements */
+.portfolio .about-section {
+  background-color: #dedbd0;
+}
+
+.portfolio .about-section .section-heading h2 {
+  color: #111111;
+  font-weight: 800;
+  opacity: 1;
+  letter-spacing: -0.045em;
+}
+
+.portfolio .contact-section h2 {
+  font-size: clamp(3.25rem, 7.5vw, 7.5rem);
+  letter-spacing: -0.06em;
+}
+
+/* Portfolio design revision 2 */
+.portfolio {
+  --accent: #344b5a;
+}
+
+.portfolio .hero h1 {
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+
+.portfolio .hero h1 span {
+  display: block;
+  margin-top: 1.4rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.025em;
+  color: #344b5a;
+}
+
+.portfolio .section-heading h2 {
+  color: #18232c;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  opacity: 1;
+}
+
+.portfolio .about-section .section-heading h2 {
+  color: #111820;
+  font-weight: 800;
+  opacity: 1;
+}
+
+.portfolio .contact-section h2 {
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.portfolio .project-info h3 {
+  color: #18232c;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .portfolio .hero h1 {
+    font-size: clamp(2.5rem, 8vw, 3.8rem);
+  }
+}
+
+/* Portfolio visibility correction */
+.portfolio .hero h1 {
+    color: #17202a !important;
+    -webkit-text-fill-color: #17202a !important;
+    opacity: 1;
+    font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+}
+
+.portfolio .hero h1 span {
+    display: block;
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    font-weight: 500;
+    color: #344b5a !important;
+    -webkit-text-fill-color: #344b5a !important;
+    margin-top: 16px;
+}
+
+.portfolio .section-heading h2 {
+    color: #17202a !important;
+    -webkit-text-fill-color: #17202a !important;
+    opacity: 1;
+}
+
+.portfolio .contact-section h2 {
+    color: #f5f3ed !important;
+    -webkit-text-fill-color: #f5f3ed !important;
+}
+
+.portfolio .contact-intro {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    color: #dedbd0;
+}
