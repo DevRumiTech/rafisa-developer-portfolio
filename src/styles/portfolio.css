@@ -308,3 +308,161 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
     margin-bottom: 35px;
     color: #dedbd0;
 }
+
+/* Language selector */
+.portfolio .language-toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.portfolio .language-toggle button {
+  background: transparent;
+  border: 0;
+  padding: 5px;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: .55;
+}
+
+.portfolio .language-toggle button[aria-pressed="true"] {
+  opacity: 1;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.portfolio .language-toggle button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 450px) {
+  .portfolio .site-header {
+    grid-template-columns: 1fr;
+  }
+  .portfolio .site-header nav {
+    flex-wrap: wrap;
+  }
+}
+
+/* Appearance settings */
+.portfolio .appearance-panel {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 12px 5%;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.portfolio .appearance-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: inherit;
+}
+
+.portfolio .appearance-field select {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.portfolio .appearance-field select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Dark mode */
+.portfolio.theme-dark {
+  --ink: #e8e9e5;
+  --paper: #1c2328;
+  --line: #4a545a;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.portfolio.theme-dark .about-section {
+  background: #293238 !important;
+}
+
+.portfolio.theme-dark .contact-section {
+  background: #11181d;
+}
+
+.portfolio.theme-dark .hero h1,
+.portfolio.theme-dark .section-heading h2,
+.portfolio.theme-dark .project-info h3 {
+  color: #f2f0e9 !important;
+  -webkit-text-fill-color: #f2f0e9 !important;
+}
+
+.portfolio.theme-dark .project-info p {
+  color: #c2c9cb;
+}
+
+.portfolio.theme-dark .project-row:hover {
+  background: #344047;
+}
+
+.portfolio.theme-dark .experience-list > div {
+  border-color: #566168;
+}
+
+.portfolio.theme-dark .contact-section h2 {
+  color: #f2f0e9 !important;
+  -webkit-text-fill-color: #f2f0e9 !important;
+}
+
+
+/* Light and dark appearance corrections */
+.portfolio .contact-section,
+.portfolio .contact-section .section-index,
+.portfolio .contact-section .contact-email,
+.portfolio .contact-section a {
+  color: #f5f3ed !important;
+  -webkit-text-fill-color: #f5f3ed !important;
+  opacity: 1;
+}
+
+.portfolio.theme-dark .section-index,
+.portfolio.theme-dark .small-label,
+.portfolio.theme-dark .project-category,
+.portfolio.theme-dark .project-number,
+.portfolio.theme-dark .hero-bottom p,
+.portfolio.theme-dark .about-personal,
+.portfolio.theme-dark .experience-list p,
+.portfolio.theme-dark .site-footer {
+  color: #e3e7e8;
+}
+
+.portfolio.theme-dark .section-heading h2,
+.portfolio.theme-dark .about-section .section-heading h2,
+.portfolio.theme-dark .project-info h3 {
+  color: #f5f5f1 !important;
+  -webkit-text-fill-color: #f5f5f1 !important;
+}
+
+.portfolio.theme-dark .hero h1 span {
+  color: #c6d6df !important;
+  -webkit-text-fill-color: #c6d6df !important;
+}
+
+.portfolio.theme-dark .contact-intro {
+  color: #e3e7e8;
+}
+
+@media (max-width: 600px) {
+  .portfolio .appearance-panel {
+    justify-content: flex-start;
+  }
+}
