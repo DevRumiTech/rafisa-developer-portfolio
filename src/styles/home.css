@@ -59,6 +59,7 @@
 .ml-showcase-project-meta p { margin-top: 16px; font-size: 16px; color: var(--ml-muted); }
 .ml-showcase-case-link { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 650; }
 .ml-showcase .ml-project-source { display: inline-block; margin-top: 18px; font-size: 14px; padding-bottom: 4px; border-bottom: 1px solid currentColor; }
+.ml-showcase .ml-project-demo { margin-left: 20px; }
 .ml-showcase-experience { background: var(--ml-panel); }
 .ml-jobs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 40px; }
 .ml-showcase-job { display: grid; grid-template-columns: 78px minmax(0,1fr); gap: 20px; }

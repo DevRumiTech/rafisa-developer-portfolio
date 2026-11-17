@@ -83,6 +83,7 @@ export default function Home() {
               <div className="ml-showcase-project-meta"><h3 id={`project-${project.slug}`}>{project.name}</h3><p>{project.summary[language]}</p><span className="ml-showcase-case-link">{c.details} ↗</span></div>
             </Link>
             {project.github && <a className="ml-project-source" href={project.github} target="_blank" rel="noopener noreferrer">{t('portfolio.detail.source')} ↗<span className="sr-only"> ({t('portfolio.newTab')})</span></a>}
+            {project.demo && <a className="ml-project-source ml-project-demo" href={project.demo} target="_blank" rel="noopener noreferrer">{t('portfolio.detail.demo')} ↗<span className="sr-only"> ({t('portfolio.newTab')})</span></a>}
           </article>)}
         </div>
       </section>

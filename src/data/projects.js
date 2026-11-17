@@ -6,7 +6,7 @@ export const caseStudies = [
     name: "Wordle",
     stack: ["React", "Node.js", "Express", "MySQL"],
     github: "https://github.com/DevRumiTech/wordle-project",
-    demo: null,
+    demo: "https://wordle-demo-murex.vercel.app",
     evidence: "https://github.com/DevRumiTech/wordle-project/blob/48b414bdb0ad65c892f09fdf3b7b25c6f32f0d5e/README.md",
     screenshots: [
       {

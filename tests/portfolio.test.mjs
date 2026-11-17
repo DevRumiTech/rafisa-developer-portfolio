@@ -275,11 +275,12 @@ test('portfolio regression suite', async (suite) => {
       const project = caseStudies[0];
       assert.deepEqual(project.stack, ['React', 'Node.js', 'Express', 'MySQL']);
       assert.equal(project.github, 'https://github.com/DevRumiTech/wordle-project');
-      assert.equal(project.demo, null);
+      assert.equal(project.demo, 'https://wordle-demo-murex.vercel.app');
       await navigate('/projects/wordle');
       assert.ok(document.querySelector('.project-screenshots'));
       assert.equal(document.querySelector('.project-pagination'), null);
-      assert.equal(document.querySelector('.detail-actions a').href, project.github);
+      assert.equal(document.querySelectorAll('.detail-actions a')[0].href, new URL(project.demo).href);
+      assert.equal(document.querySelectorAll('.detail-actions a')[1].href, project.github);
       for (const code of ['en', 'fr']) {
         await language(code);
         assert.deepEqual([...document.querySelectorAll('.detail-features li')].map(li => li.textContent), project.features[code]);
@@ -295,6 +296,7 @@ test('portfolio regression suite', async (suite) => {
       assert.equal(document.querySelectorAll('.ml-project-link').length, 1);
       assert.equal(document.querySelector('.ml-project-link').getAttribute('href'), '/projects/wordle');
       assert.equal(document.querySelector('.ml-project-source').href, 'https://github.com/DevRumiTech/wordle-project');
+      assert.equal(document.querySelector('.ml-project-demo').href, new URL(caseStudies[0].demo).href);
       assert.equal(document.querySelector('img[src*="portrait"]'), null);
       assert.equal(document.querySelector('.ml-showcase-ambient, .ml-showcase-quote-strip'), null);
       assert.equal(document.querySelector('a[href*="design-preview"]'), null);
