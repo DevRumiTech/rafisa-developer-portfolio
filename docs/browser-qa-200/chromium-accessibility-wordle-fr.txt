@@ -1,0 +1,62 @@
+- main:
+  - link "← Retour aux projets":
+    - /url: /#work
+  - paragraph: ÉTUDE DE PROJET / 01
+  - heading "Wordle" [level=1]
+  - paragraph: Un jeu de mots full-stack avec comptes utilisateurs, logique de jeu côté serveur et historique des parties.
+  - navigation "Sur cette page de projet":
+    - link "Captures du projet":
+      - /url: /projects/wordle#screenshots
+    - link "Technologies":
+      - /url: /projects/wordle#technologies
+    - link "Fonctionnalités":
+      - /url: /projects/wordle#features
+  - region "Le projet en bref":
+    - heading "Le projet en bref" [level=2]
+    - term: Catégorie
+    - definition: FULL-STACK / JEU DE MOTS
+    - term: Démonstration
+    - definition: Aucun lien public fourni
+    - term: Code source
+    - definition: Lien ci-dessous
+  - link "Code sur GitHub ↗ (s’ouvre dans un nouvel onglet)":
+    - /url: https://github.com/DevRumiTech/wordle-project
+  - paragraph: Démonstration publique non disponible actuellement.
+  - region "Captures du projet":
+    - heading "Captures du projet" [level=2]
+    - group "Vue de la capture":
+      - button "Ordinateur" [pressed]
+      - button "Mobile"
+    - figure "Formulaire de connexion Wordle sur ordinateur. Interface originale en anglais, capturée localement. Aucune donnée de joueur n’est affichée.":
+      - img "Formulaire de connexion Wordle sur ordinateur."
+      - text: Formulaire de connexion Wordle sur ordinateur. Interface originale en anglais, capturée localement. Aucune donnée de joueur n’est affichée.
+    - link "Voir l’image en taille réelle ↗":
+      - /url: /projects/wordle/signin-desktop.png
+  - region "Fonctionnement":
+    - heading "Fonctionnement" [level=2]
+    - term: Interface
+    - definition: L’interface React accepte les claviers physique et virtuel et restaure les parties inachevées.
+    - term: Logique de jeu
+    - definition: Le backend Express valide les mots de cinq lettres, évalue les lettres répétées en deux passes et calcule les scores sur six essais au maximum.
+    - term: Persistance
+    - definition: MySQL conserve les parties et les sessions. Les joueurs authentifiés peuvent consulter leur historique personnel et leurs statistiques.
+    - link "Lire la documentation du projet (s’ouvre dans un nouvel onglet)":
+      - /url: https://github.com/DevRumiTech/wordle-project/blob/48b414bdb0ad65c892f09fdf3b7b25c6f32f0d5e/README.md
+  - heading "Technologies" [level=2]
+  - list:
+    - listitem: React
+    - listitem: Node.js
+    - listitem: Express
+    - listitem: MySQL
+  - heading "Fonctionnalités" [level=2]
+  - list:
+    - listitem: Inscription et authentification
+    - listitem: Dictionnaires anglais et français
+    - listitem: Logique de jeu côté serveur
+    - listitem: Historique des parties
+    - listitem: Statistiques des joueurs
+  - paragraph:
+    - link "Discuter de ce projet ↗":
+      - /url: /#contact
+  - link "← Tous les projets":
+    - /url: /#work

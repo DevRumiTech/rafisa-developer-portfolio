@@ -1,0 +1,55 @@
+{
+  "home": {
+    "version": "12.8.2",
+    "fetchTime": "2026-11-16T21:56:49.265Z",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "first-contentful-paint": "1.5\u00a0s",
+      "largest-contentful-paint": "1.7\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "cumulative-layout-shift": "0.032"
+    },
+    "remainingSuggestions": [
+      "first-contentful-paint",
+      "largest-contentful-paint",
+      "render-blocking-resources",
+      "unused-javascript",
+      "uses-responsive-images",
+      "image-delivery-insight",
+      "network-dependency-tree-insight",
+      "render-blocking-insight"
+    ]
+  },
+  "wordle": {
+    "version": "12.8.2",
+    "fetchTime": "2026-11-16T21:57:52.176Z",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "first-contentful-paint": "1.5\u00a0s",
+      "largest-contentful-paint": "1.8\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "cumulative-layout-shift": "0"
+    },
+    "remainingSuggestions": [
+      "first-contentful-paint",
+      "largest-contentful-paint",
+      "render-blocking-resources",
+      "unused-javascript",
+      "modern-image-formats",
+      "uses-responsive-images",
+      "image-delivery-insight",
+      "network-dependency-tree-insight",
+      "render-blocking-insight"
+    ]
+  }
+}

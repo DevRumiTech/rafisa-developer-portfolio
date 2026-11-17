@@ -2,11 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/monogram.svg" />
+    <meta name="theme-color" content="#f7f9fb" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Michael Leigh’s developer portfolio: full-stack web applications, selected projects, technical skills and professional experience in Switzerland." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Michael Leigh | Developer Portfolio" />
+    <meta property="og:title" content="Michael Leigh | Full-Stack Developer" />
+    <meta property="og:description" content="Selected web development projects, technical skills and professional experience in Switzerland." />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Michael Leigh | Full-Stack Developer" />
+    <meta name="twitter:description" content="Selected web development projects, technical skills and professional experience in Switzerland." />
+    <script data-appearance-init>
+      (() => {
+        let theme = 'light';
+        try { if (localStorage.getItem('portfolio-theme') === 'dark') theme = 'dark'; } catch {}
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#192630' : '#f7f9fb';
+      })();
+    </script>
     <title>Michael Leigh | Full-Stack Developer</title>
   </head>
   <body>
+    <noscript>
+      <section style="max-width: 50rem; margin: 3rem auto; padding: 0 1.5rem; font-family: Arial, sans-serif; line-height: 1.6;">
+        <h1>Michael Leigh — Developer Portfolio</h1>
+        <p lang="en">Enable JavaScript to explore the interactive portfolio. You can still visit the project repositories or contact me by email.</p>
+        <p lang="fr">Activez JavaScript pour explorer le portfolio interactif. Vous pouvez aussi consulter les dépôts des projets ou me contacter par e-mail.</p>
+        <p><a href="https://github.com/DevRumiTech">GitHub — DevRumiTech</a> · <a href="mailto:rumi6864@gmail.com">rumi6864@gmail.com</a></p>
+      </section>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

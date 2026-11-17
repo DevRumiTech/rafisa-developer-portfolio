@@ -1,0 +1,230 @@
+{
+  "contact": {
+    "name": "Michael Leigh",
+    "email": "rumi6864@gmail.com",
+    "github": "https://github.com/DevRumiTech",
+    "linkedin": "https://www.linkedin.com/in/michael-leigh-0b73221ab/"
+  },
+  "en": {
+    "role": "Full-stack developer",
+    "location": "Vaud, Switzerland",
+    "profile": "Full-stack developer with a focus on frontend interfaces, responsive layouts and accessibility. Experience with React applications, APIs, SQL databases and automated testing.",
+    "labels": {
+      "profile": "Profile",
+      "experience": "Development experience",
+      "project": "Selected project",
+      "skills": "Technical skills",
+      "earlier": "Earlier professional experience",
+      "education": "Education and certifications",
+      "languages": "Languages",
+      "interests": "Interests and personal qualities"
+    },
+    "experience": [
+      {
+        "title": "Full-Stack Developer Intern",
+        "org": "Rafisa - St-Légier, Vaud, Switzerland",
+        "dates": "19 October 2026 - present | scheduled end: 14 January 2027",
+        "bullets": [
+          "Ongoing internship. Development of Wordle, a full-stack application using React, Node.js, Express and MySQL."
+        ]
+      },
+      {
+        "title": "Web Developer Intern",
+        "org": "Gaea21 NGO - Geneva, Switzerland",
+        "dates": "June - September 2025",
+        "bullets": [
+          "Contributed to EcoMinds, a sustainability and community-engagement project.",
+          "Developed responsive React layouts and reusable components.",
+          "Improved semantic HTML, keyboard use, SEO and performance; worked within an existing codebase and team process."
+        ]
+      }
+    ],
+    "project": {
+      "title": "Wordle",
+      "stack": "React · Node.js · Express · MySQL",
+      "text": "Word game with player accounts, English/French dictionaries, server-side guess evaluation, physical and on-screen keyboards, saved games, history and personal statistics.",
+      "url": "https://github.com/DevRumiTech/wordle-project"
+    },
+    "skills": [
+      [
+        "Frontend",
+        "React, TypeScript, JavaScript, HTML5, CSS3; responsive interfaces, component architecture, browser routing, form validation, persisted state, loading/error states and data views."
+      ],
+      [
+        "Backend and data",
+        "Node.js, Express, Python, Flask, PHP, REST APIs, MySQL, PostgreSQL, SQLite."
+      ],
+      [
+        "Testing and tools",
+        "Vitest, Playwright, pytest, API testing, Vite, Git, GitHub, Vercel."
+      ],
+      [
+        "Design",
+        "Figma, Canva, Adobe."
+      ]
+    ],
+    "earlier": [
+      {
+        "title": "Care Support Assistant (60%)",
+        "org": "CMS de Cully, APROMAD",
+        "dates": "October 2015 - August 2016",
+        "bullets": [
+          "Supported dependent people with hygiene, comfort and autonomy; supported relatives and collaborated with a multidisciplinary team."
+        ]
+      },
+      {
+        "title": "Care Assistant",
+        "org": "EMS Les Rosiers - Blonay",
+        "dates": "September 2014 - May 2015",
+        "bullets": [
+          "Supported residents with daily activities and meals, provided care under nursing supervision and worked as part of the team."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "dates": "2025 - 2026",
+        "title": "Certificate of Advanced Studies in Web Development",
+        "org": "HE-Arc University of Applied Sciences - Neuchâtel, Switzerland"
+      },
+      {
+        "dates": "2023 - 2024",
+        "title": "Meta Full-Stack Engineer Certificate",
+        "org": "Coursera, authorised by Meta"
+      },
+      {
+        "dates": "2017 - 2022",
+        "title": "Bachelor-level nursing studies - not completed",
+        "org": "HESAV - Lausanne, Switzerland"
+      },
+      {
+        "dates": "2017",
+        "title": "Specialised Matura, health option",
+        "org": "HESAV - Lausanne, Switzerland"
+      },
+      {
+        "dates": "2016",
+        "title": "General education certificate",
+        "org": "Gymnase de Chamblandes - Pully, Switzerland"
+      },
+      {
+        "dates": "2015",
+        "title": "Training: care and support for older people (AVDEMS)",
+        "org": "108 hours of theory and eight months of practice; Red Cross auxiliary equivalence stated on the source certificate."
+      }
+    ],
+    "languages": "French: native or bilingual · English: native or bilingual · German: limited working proficiency.",
+    "interests": "Shotokan karate, guitar and video games. Calm, patient and willing to learn."
+  },
+  "fr": {
+    "role": "Développeur full-stack",
+    "location": "Vaud, Suisse",
+    "profile": "Développeur full-stack orienté interfaces frontend, mises en page responsives et accessibilité. Expérience des applications React, des API, des bases de données SQL et des tests automatisés.",
+    "labels": {
+      "profile": "Profil",
+      "experience": "Expérience en développement",
+      "project": "Projet sélectionné",
+      "skills": "Compétences techniques",
+      "earlier": "Expérience professionnelle antérieure",
+      "education": "Formation et certifications",
+      "languages": "Langues",
+      "interests": "Intérêts et qualités personnelles"
+    },
+    "experience": [
+      {
+        "title": "Stagiaire développeur full-stack",
+        "org": "Rafisa - St-Légier, Vaud, Suisse",
+        "dates": "19 octobre 2026 - présent | fin prévue : 14 janvier 2027",
+        "bullets": [
+          "Stage en cours. Développement de Wordle, une application full-stack avec React, Node.js, Express et MySQL."
+        ]
+      },
+      {
+        "title": "Stagiaire développeur web",
+        "org": "ONG Gaea21 - Genève, Suisse",
+        "dates": "Juin - septembre 2025",
+        "bullets": [
+          "Contribution à EcoMinds, un projet de développement durable et d’engagement communautaire.",
+          "Développement de mises en page React responsives et de composants réutilisables.",
+          "Amélioration du HTML sémantique, de la navigation au clavier, du référencement et des performances ; travail dans une base de code existante et selon le processus de l’équipe."
+        ]
+      }
+    ],
+    "project": {
+      "title": "Wordle",
+      "stack": "React · Node.js · Express · MySQL",
+      "text": "Jeu de mots avec comptes utilisateurs, dictionnaires anglais/français, évaluation des essais côté serveur, claviers physique et virtuel, sauvegarde des parties, historique et statistiques personnelles.",
+      "url": "https://github.com/DevRumiTech/wordle-project"
+    },
+    "skills": [
+      [
+        "Frontend",
+        "React, TypeScript, JavaScript, HTML5, CSS3 ; interfaces responsives, architecture de composants, routage, validation de formulaires, état persistant, états de chargement/d’erreur et vues de données."
+      ],
+      [
+        "Backend et données",
+        "Node.js, Express, Python, Flask, PHP, API REST, MySQL, PostgreSQL, SQLite."
+      ],
+      [
+        "Tests et outils",
+        "Vitest, Playwright, pytest, tests d’API, Vite, Git, GitHub, Vercel."
+      ],
+      [
+        "Design",
+        "Figma, Canva, Adobe."
+      ]
+    ],
+    "earlier": [
+      {
+        "title": "Auxiliaire polyvalent (60 %)",
+        "org": "CMS de Cully, APROMAD",
+        "dates": "Octobre 2015 - août 2016",
+        "bullets": [
+          "Accompagnement de personnes dépendantes, aide à l’hygiène et au confort, encouragement de l’autonomie, soutien aux proches et collaboration avec l’équipe pluridisciplinaire."
+        ]
+      },
+      {
+        "title": "Auxiliaire en EMS, secteur soins",
+        "org": "EMS Les Rosiers - Blonay",
+        "dates": "Septembre 2014 - mai 2015",
+        "bullets": [
+          "Accompagnement des résidents dans les activités quotidiennes, soins sous supervision infirmière, aide aux repas et travail en équipe."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "dates": "2025 - 2026",
+        "title": "Certificate of Advanced Studies en développement web",
+        "org": "Haute École Arc - Neuchâtel, Suisse"
+      },
+      {
+        "dates": "2023 - 2024",
+        "title": "Certificat Meta Full-Stack Engineer",
+        "org": "Coursera, formation proposée par Meta"
+      },
+      {
+        "dates": "2017 - 2022",
+        "title": "Études en Bachelor en soins infirmiers - formation non achevée",
+        "org": "HESAV - Lausanne, Suisse"
+      },
+      {
+        "dates": "2017",
+        "title": "Maturité spécialisée, option santé",
+        "org": "HESAV - Lausanne, Suisse"
+      },
+      {
+        "dates": "2016",
+        "title": "Certificat de culture générale",
+        "org": "Gymnase de Chamblandes - Pully, Suisse"
+      },
+      {
+        "dates": "2015",
+        "title": "Formation « Auxiliaire accompagnant la personne âgée » (AVDEMS)",
+        "org": "108 h de théorie et 8 mois de pratique ; équivalence auxiliaire Croix-Rouge mentionnée sur le certificat source."
+      }
+    ],
+    "languages": "Français : langue maternelle ou niveau bilingue · Anglais : langue maternelle ou niveau bilingue · Allemand : compétence professionnelle limitée.",
+    "interests": "Karaté Shotokan, guitare et jeux vidéo. Calme, patient et envie d’apprendre."
+  }
+}

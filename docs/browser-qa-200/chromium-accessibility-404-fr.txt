@@ -1,0 +1,4 @@
+- main:
+  - heading "404 — Page introuvable" [level=1]
+  - link "Accueil":
+    - /url: /

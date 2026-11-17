@@ -1,0 +1,100 @@
+- main:
+  - region "Michael Leigh. Développeur full-stack.":
+    - text: MICHAEL LEIGH / PORTFOLIO
+    - heading "Michael Leigh. Développeur full-stack." [level=1]
+    - paragraph: Je développe des applications web full-stack, des interfaces et des API aux bases de données.
+    - paragraph: Mon parcours associe une formation en développement web, des projets personnels et des stages chez Gaea21 et Rafisa.
+    - paragraph: Basé dans le canton de Vaud, Suisse
+  - region "Compétences techniques":
+    - text: 01 / Compétences
+    - heading "Compétences techniques" [level=2]
+    - heading "Développement frontend" [level=3]
+    - list:
+      - listitem: React
+      - listitem: TypeScript
+      - listitem: JavaScript
+      - listitem: HTML5
+      - listitem: CSS3
+    - heading "Développement backend" [level=3]
+    - list:
+      - listitem: Node.js
+      - listitem: Express
+      - listitem: Python
+      - listitem: Flask
+      - listitem: PHP
+      - listitem: API REST
+    - heading "Bases de données" [level=3]
+    - list:
+      - listitem: MySQL
+      - listitem: PostgreSQL
+      - listitem: SQLite
+    - heading "Logiciels de design" [level=3]
+    - list:
+      - listitem: Figma
+      - listitem: Canva
+      - listitem: Adobe
+    - heading "Tests et développement" [level=3]
+    - list:
+      - listitem: Vitest
+      - listitem: Playwright
+      - listitem: pytest
+      - listitem: Vite
+      - listitem: Git
+      - listitem: GitHub
+    - heading "Qualités personnelles" [level=3]
+    - paragraph: Calme · Patient · Envie d'apprendre
+  - region "Projets sélectionnés":
+    - text: 02 / Projets
+    - heading "Projets sélectionnés" [level=2]
+    - article:
+      - link "Wordle":
+        - /url: /projects/wordle
+        - heading "Wordle" [level=3]
+        - paragraph: Un jeu de mots full-stack avec comptes utilisateurs, logique de jeu côté serveur et historique des parties.
+        - text: Détails du projet ↗
+      - link "Code sur GitHub ↗ (s’ouvre dans un nouvel onglet)":
+        - /url: https://github.com/DevRumiTech/wordle-project
+  - region "Expérience professionnelle":
+    - text: 03 / Expérience professionnelle
+    - heading "Expérience professionnelle" [level=2]
+    - article:
+      - text: EXPÉRIENCE ACTUELLE
+      - heading "Rafisa" [level=3]
+      - paragraph: Stagiaire développeur Full-Stack
+      - paragraph: St-Légier, Vaud, Suisse
+      - paragraph: 19 octobre 2026 – 14 janvier 2027
+    - article:
+      - text: EXPÉRIENCE PRÉCÉDENTE
+      - heading "ONG Gaea21" [level=3]
+      - paragraph: Stagiaire développeur web
+      - paragraph: Genève, Suisse
+      - paragraph: Juin - septembre 2025
+  - region "Formation et certifications":
+    - text: 04 / Formation
+    - heading "Formation et certifications" [level=2]
+    - article:
+      - text: 2025–2026
+      - heading "Certificate of Advanced Studies en développement web" [level=3]
+      - paragraph: Haute École Arc
+      - paragraph: Neuchâtel, Suisse
+    - article:
+      - text: 2023–2024
+      - heading "Certificat Meta Full-Stack Engineer" [level=3]
+      - paragraph: Coursera, formation proposée par Meta
+      - paragraph: Meta (États-Unis) · Coursera
+  - region "Loisirs":
+    - text: 05 / Loisirs
+    - heading "Loisirs" [level=2]
+    - list:
+      - listitem: Karaté Shotokan
+      - listitem: Guitare
+      - listitem: Jeux vidéo
+  - region "Contact":
+    - text: 06 / Contact
+    - heading "Contact" [level=2]
+    - paragraph: Développeur full-stack basé dans le canton de Vaud, en Suisse.
+    - 'link "E-mail : rumi6864@gmail.com"':
+      - /url: mailto:rumi6864@gmail.com
+    - link "GitHub (s’ouvre dans un nouvel onglet)":
+      - /url: https://github.com/DevRumiTech
+    - text: Téléchargement du CV indisponible — aucun document fourni.

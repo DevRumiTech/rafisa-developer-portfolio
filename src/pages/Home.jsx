@@ -1,116 +1,118 @@
-﻿import "../styles/portfolio.css";
-import { Link } from "react-router-dom";
-import { projectSlugByName } from "../data/projects";
-import ProfessionalSections from "../components/ProfessionalSections";
-import { useTranslation } from "react-i18next";
-import useAppearance from "../hooks/useAppearance";
-import AppearanceControls from "../components/AppearanceControls";
-
-// Portfolio projects are kept in one array for easier maintenance.
-const projects = [
-  ["01", "Alpine ClientFlow", "FRONTEND / CRM", "Client onboarding, role-based workspaces and compliance reviews."],
-  ["02", "VeriLot", "FULL-STACK / INVENTORY", "Inventory management with serialized products and manufacturing batches."],
-  ["03", "RumiPay", "FRONTEND / FINTECH", "Multilingual Swiss digital-wallet interface."],
-  ["04", "SQL Ops Dashboard", "FULL-STACK / ANALYTICS", "Retail revenue, margin and product reporting."],
-  ["05", "Wordle", "FULL-STACK / WORD GAME", "Word-guessing game with player accounts and game history."],
-];
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Hand, Guitar, Gamepad2 } from 'lucide-react';
+import { professional } from '../data/professional';
+import { homeCopy } from '../data/homeCopy';
+import { caseStudies } from '../data/projects';
+import { cvDocuments } from '../data/cv';
+import useAppearance from '../hooks/useAppearance';
+import useEntranceMotion from '../hooks/useEntranceMotion';
+import SiteHeader from '../components/SiteHeader';
+import TechnologyLogo from '../components/TechnologyLogo';
+import EducationLogo from '../components/EducationLogo';
+import CvDownload from '../components/CvDownload';
+import TypedSentence from '../components/TypedSentence';
+import '../styles/portfolio.css';
+import '../styles/home.css';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
-  const { theme, setTheme } = useAppearance();
-  return (
-    <div className={`portfolio theme-${theme}`}>
-      <header className="site-header">
-        <a className="wordmark" href="#top">ML<span>.</span></a>
-        <nav aria-label="Main navigation">
-          <a href="#work">{t("nav.work")}</a>
-          <a href="#about">{t("nav.about")}</a>
-          <a href="#contact">{t("nav.contact")}</a>
-          <div className="language-toggle" aria-label="Website language">
-            <button type="button" aria-pressed={i18n.language === "en"} onClick={() => i18n.changeLanguage("en")}>EN</button>
-            <button type="button" aria-pressed={i18n.language === "fr"} onClick={() => i18n.changeLanguage("fr")}>FR</button>
+  const language = i18n.resolvedLanguage === 'fr' ? 'fr' : 'en';
+  const c = homeCopy[language];
+  const details = professional[language];
+  const { theme } = useAppearance();
+  const page = useRef(null);
+  useEntranceMotion(page);
+  return <div ref={page} className={`portfolio theme-${theme} ml-showcase ml-showcase-${theme}`}>
+    <Link className="skip-link" to="#top">{t('portfolio.skip')}</Link>
+    <SiteHeader />
+    <main id="top" tabIndex={-1}>
+      <section id="about" className="ml-showcase-hero" aria-labelledby="home-title">
+        <div className="ml-showcase-hero-head"><span>MICHAEL LEIGH / PORTFOLIO</span><span>VAUD, CH / 2026</span></div>
+        <div className="ml-showcase-heading-layout">
+          <h1 id="home-title"><span className="ml-head-first">Michael</span><span className="ml-head-color">Leigh.</span><span className="ml-head-third">{c.role}</span></h1>
+          <figure className="ml-showcase-portrait">
+            <img
+              src="/images/portfolio-headshot-transparent.webp"
+              alt="Michael Leigh"
+              width="960"
+              height="960"
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        </div>
+        <div className="ml-showcase-hero-bottom">
+          <div className="ml-introduction">
+            <TypedSentence key={language} sentence={c.introduction} finishLabel={c.finishTyping} />
+            <p className="ml-background">{c.background}</p>
+            <p className="ml-showcase-location">{c.location}</p>
           </div>
-        </nav>
-        <span className="location">VAUD, CH / 2026</span>
-      </header>
-      <AppearanceControls theme={theme} setTheme={setTheme} />
-
-      <main id="top">
-        <section className="hero">
-          <div className="hero-rail">
-            <span>PORTFOLIO / 001</span>
-            <span>DEVELOPMENT & ENGINEERING</span>
-          </div>
-          <div className="hero-content">
-            <p className="eyebrow">WEB DEVELOPMENT / VAUD, SWITZERLAND</p>
-            <h1>Michael Leigh<span>{t("portfolio.role")}</span></h1>
-            <div className="hero-bottom">
-              <p>{t("portfolio.intro")}</p>
-              <a className="text-link" href="#work">{t("portfolio.viewWork")} ↗</a>
-            </div>
-          </div>
-        </section>
-
-        <section className="work-section section-shell" id="work">
-          <div className="section-heading">
-            <span className="section-index">01 / WORK</span>
-            <h2>{t("portfolio.work")}</h2>
-          </div>
-          <div className="project-list">
-            {projects.map(([number, name, category, description]) => (
-              <Link className="project-row" key={number} to={"/projects/" + projectSlugByName[name]}>
-                <span className="project-number">{number}</span>
-                <div className="project-info">
-                  <h3>{name}</h3>
-                  <p>{t("portfolio.projects." + number + ".desc")}</p>
+        </div>
+      </section>
+      <section className="ml-showcase-details" id="skills" aria-labelledby="skills-title">
+        <span className="ml-showcase-kicker">01 / {t('nav.skills')}</span>
+        <h2 id="skills-title" data-animate>{details.skillsTitle}</h2>
+        <div className="ml-showcase-skills">
+          {details.skills.map(group => <div className="ml-showcase-skill-group" data-animate key={group.category}>
+            <h3>{group.category}</h3><ul>{group.items.map(item => <li key={item}><TechnologyLogo name={item} /><span>{item}</span></li>)}</ul>
+          </div>)}
+        </div>
+        <div className="ml-showcase-soft-skills"><h3>{details.softSkillsTitle}</h3><p>{details.softSkills.join(' · ')}</p></div>
+      </section>
+      <section className="ml-showcase-work" id="work" aria-labelledby="work-title">
+        <span className="ml-showcase-kicker">02 / {t('nav.work')}</span><h2 id="work-title" data-animate>{c.projects}</h2>
+        <div className="ml-showcase-project-grid">
+          {caseStudies.map(project => <article className="ml-showcase-card" data-animate key={project.slug}>
+            <Link className="ml-project-link" to={`/projects/${project.slug}`} aria-labelledby={`project-${project.slug}`}>
+              <div className="ml-showcase-visual ml-wordle-preview">
+                <div className="ml-wordle-browser-bar" aria-hidden="true">
+                  <div className="ml-wordle-browser-dots" />
+                  <span>Wordle</span>
                 </div>
-                <span className="project-category">{t("portfolio.projects." + number + ".category")}</span>
-              </Link>
-            ))}
-          </div>
-          <a className="text-link external-link" href="https://github.com/DevRumiTech" target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a>
-        </section>
-
-        <section className="about-section section-shell" id="about">
-          <div className="section-heading">
-            <span className="section-index">02 / PROFILE</span>
-            <h2>{t("portfolio.about")}</h2>
-          </div>
-          <div className="about-grid">
-            <div>
-              <p className="about-lead">{t("portfolio.aboutLead")}</p>
-              <p className="about-personal">{t("portfolio.hobbies")}</p>
-            </div>
-            <div className="experience-list">
-              <div>
-                <span className="small-label">{t("portfolio.current")}</span>
-                <div className="employer-heading"><img src="/logos/rafisa.png" alt="Rafisa logo" /><h3>Rafisa</h3></div><p>{t("portfolio.rafisaLocation")}</p>
-                <p>{t("portfolio.rafisaRole")}</p>
-                <p>{t("portfolio.rafisaDates")}</p>
+                <img
+                  src="/projects/wordle/gameplay-desktop.png"
+                  width="1440"
+                  height="1335"
+                  alt={language === 'fr' ? 'Capture réelle du jeu Wordle' : 'Actual Wordle gameplay screenshot'}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-              <div>
-                <span className="small-label">{t("portfolio.previous")}</span>
-                <div className="employer-heading"><img src="/logos/gaea21.png" alt="Gaea21 logo" /><h3>Gaea21 NGO</h3></div><p>{t("portfolio.gaeaLocation")}</p>
-                <p>{t("portfolio.gaeaRole")}</p>
-                <p>{t("portfolio.gaeaDates")}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <ProfessionalSections />
-        <section className="contact-section section-shell" id="contact">
-          <span className="section-index">05 / CONTACT</span>
-          <h2>{t("portfolio.contact")}</h2><p className="contact-intro">{t("portfolio.contactMessage")}</p>
-          <a className="contact-email" href="mailto:rumi6864@gmail.com">{t("portfolio.contactButton")} ↗</a>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <span>© 2026 MICHAEL LEIGH</span>
-        <span>{t("portfolio.footer")}</span>
-        <a href="#top">{t("portfolio.back")} ↑</a>
-      </footer>
-    </div>
-  );
+              <div className="ml-showcase-project-meta"><h3 id={`project-${project.slug}`}>{project.name}</h3><p>{project.summary[language]}</p><span className="ml-showcase-case-link">{c.details} ↗</span></div>
+            </Link>
+            {project.github && <a className="ml-project-source" href={project.github} target="_blank" rel="noopener noreferrer">{t('portfolio.detail.source')} ↗<span className="sr-only"> ({t('portfolio.newTab')})</span></a>}
+          </article>)}
+        </div>
+      </section>
+      <section className="ml-showcase-experience" id="experience" aria-labelledby="experience-title">
+        <span className="ml-showcase-kicker">03 / {c.experience}</span><h2 id="experience-title" data-animate>{c.experience}</h2>
+        <div className="ml-jobs">{['rafisa', 'gaea'].map(employer => <article className="ml-showcase-job" data-animate key={employer}>
+          <img src={`/logos/${employer === 'gaea' ? 'gaea21' : employer}.png`} alt="" width="78" height="58" loading="lazy" decoding="async" />
+          <div><span className="ml-showcase-kicker">{t(`portfolio.${employer === 'rafisa' ? 'current' : 'previous'}`)}</span><h3>{employer === 'rafisa' ? 'Rafisa' : t('portfolio.gaeaName')}</h3><p>{t(`portfolio.${employer}Role`)}</p><p>{t(`portfolio.${employer}Location`)}</p><p className="employment-dates">{t(`portfolio.${employer}Dates`)}</p></div>
+        </article>)}</div>
+      </section>
+      <section className="ml-showcase-education" id="education" aria-labelledby="education-title">
+        <span className="ml-showcase-kicker">04 / {t('nav.education')}</span><h2 id="education-title" data-animate>{details.educationTitle}</h2>
+        {details.education.map(item => <article className="ml-showcase-education-row" data-animate key={item.title}>
+          <span className="ml-showcase-education-period">{item.period}</span><EducationLogo title={item.title} institution={item.institution} /><div><h3>{item.title}</h3><p>{item.institution}</p><p>{item.location}</p></div>
+        </article>)}
+      </section>
+      <section className="ml-showcase-hobbies" id="hobbies" aria-labelledby="hobbies-title">
+        <span className="ml-showcase-kicker">05 / {c.hobbies}</span><h2 id="hobbies-title" data-animate>{c.hobbies}</h2>
+        <ul>{[[Hand, c.karate], [Guitar, c.guitar], [Gamepad2, c.games]].map(([Icon, label]) => <li key={label}><span className="ml-showcase-hobby-icon" aria-hidden="true"><Icon /></span>{label}</li>)}</ul>
+      </section>
+      <section className="ml-showcase-contact" id="contact" aria-labelledby="contact-title">
+        <span className="ml-showcase-kicker">06 / {c.contact}</span><h2 id="contact-title" data-animate>{c.contact}</h2><p>{c.contactTagline}</p>
+        <div className="ml-contact-links">
+          <a href="mailto:rumi6864@gmail.com">{c.email}<span className="sr-only">: rumi6864@gmail.com</span></a>
+          <a href="https://github.com/DevRumiTech" target="_blank" rel="noopener noreferrer">GitHub<span className="sr-only"> ({t('portfolio.newTab')})</span></a>
+          <a href="https://www.linkedin.com/in/michael-leigh-0b73221ab/" target="_blank" rel="noopener noreferrer">LinkedIn<span className="sr-only"> ({t('portfolio.newTab')})</span></a>
+          <CvDownload documents={cvDocuments} language={language} copy={c} />
+        </div>
+      </section>
+    </main>
+    <footer className="ml-showcase-footer"><span>© 2026 MICHAEL LEIGH</span><Link to="#top">{t('portfolio.back')} ↑</Link></footer>
+  </div>;
 }

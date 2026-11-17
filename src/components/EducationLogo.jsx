@@ -19,7 +19,7 @@
     return (
       <div className="education-logo meta-logo" aria-hidden="true">
         <svg
-          viewBox="0 0 120 60"
+          viewBox="-7 0 120 60"
           role="presentation"
           focusable="false"
         >

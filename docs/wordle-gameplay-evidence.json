@@ -1,0 +1,75 @@
+{
+  "browser": "151.0.7922.34",
+  "mysql": "8.4.13",
+  "mode": "Unmodified temporary source copy; isolated Unix-socket-only MySQL; original schema/dictionaries/solution candidates; real UI registration, login and guesses; private test profiles collapsed; no mocks or forced results",
+  "captures": [
+    {
+      "file": "gameplay-desktop.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "language": "en",
+      "guesses": [
+        {
+          "guess": "CRANE",
+          "feedback": [
+            "absent",
+            "absent",
+            "absent",
+            "absent",
+            "correct"
+          ],
+          "status": "in_progress",
+          "attemptsRemaining": 5
+        },
+        {
+          "guess": "SHOUT",
+          "feedback": [
+            "correct",
+            "absent",
+            "absent",
+            "absent",
+            "absent"
+          ],
+          "status": "in_progress",
+          "attemptsRemaining": 4
+        }
+      ]
+    },
+    {
+      "file": "gameplay-mobile.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "language": "fr",
+      "guesses": [
+        {
+          "guess": "SALUT",
+          "feedback": [
+            "absent",
+            "present",
+            "absent",
+            "absent",
+            "absent"
+          ],
+          "status": "in_progress",
+          "attemptsRemaining": 5
+        },
+        {
+          "guess": "ROUES",
+          "feedback": [
+            "present",
+            "absent",
+            "absent",
+            "present",
+            "absent"
+          ],
+          "status": "in_progress",
+          "attemptsRemaining": 4
+        }
+      ]
+    }
+  ]
+}

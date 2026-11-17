@@ -1,5 +1,4 @@
-/* Portfolio visual system. These styles override the starter page
-   without deleting the original Vite stylesheets. */
+/* Shared site primitives; homepage layout lives in home.css. */
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color: #1a1b1a;
@@ -33,65 +32,14 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
   padding: 24px 5%;
 }
 .wordmark { font-size: 31px; font-weight: 900; letter-spacing: -3px; }
-.wordmark span, .accent-period { color: var(--accent); }
+.wordmark span { color: var(--accent); }
 .site-header nav { display: flex; gap: 35px; }
 .site-header nav a { font-size: 13px; font-weight: 600; }
 .location { justify-self: end; font-size: 10px; letter-spacing: 1.5px; }
-
-.hero {
-  display: grid;
-  grid-template-columns: 19% 1fr;
-  min-height: 570px;
-  border-bottom: 1px solid var(--ink);
-}
-.hero-rail {
-  border-right: 1px solid var(--line);
-  padding: 39px 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-}
-.hero-rail span:last-child { writing-mode: vertical-rl; }
-.hero-content { padding: 90px 7% 55px; }
-.eyebrow, .section-index, .small-label {
+.section-index, .small-label {
   font-size: 11px;
   letter-spacing: 1.7px;
   font-weight: 700;
-}
-.accent-mark {
-  display: inline-block;
-  width: 9px; height: 9px;
-  background: var(--accent);
-  margin-right: 10px;
-}
-.hero h1 {
-  font-size: clamp(60px, 8.3vw, 140px);
-  line-height: .98;
-  letter-spacing: -.075em;
-  font-weight: 800;
-  margin: 32px 0 65px;
-}
-.hero h1 span {
-  display: block;
-  font-family: Georgia, serif;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: -.065em;
-  color: var(--accent);
-}
-.hero-bottom {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 30px;
-}
-.hero-bottom p {
-  max-width: 420px;
-  font-size: 16px;
-  line-height: 1.7;
-  margin: 0;
 }
 .text-link {
   display: inline-flex;
@@ -104,212 +52,20 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
 }
 
 .section-shell { padding: 90px 5% 110px; }
-.section-heading {
-  display: grid;
-  grid-template-columns: 20% 1fr;
-  align-items: start;
-  margin-bottom: 65px;
-}
-.section-heading h2 {
-  margin: 0;
-  font-size: clamp(40px, 5.5vw, 78px);
-  font-weight: 700;
-  letter-spacing: -.06em;
-  line-height: 1.05;
-}
-.project-row {
-  display: grid;
-  grid-template-columns: 8% 1fr 24%;
-  gap: 20px;
-  align-items: center;
-  padding: 30px 12px;
-  border-top: 1px solid var(--line);
-  transition: padding .25s ease, background .25s ease;
-}
-.project-row:last-child { border-bottom: 1px solid var(--line); }
-.project-row:hover { padding-left: 25px; background: #ece9e0; }
-.project-number, .project-category {
-  font-size: 10px;
-  letter-spacing: 1.2px;
-}
-.project-category { text-align: right; }
-.project-info h3 {
-  font-size: clamp(24px, 3vw, 40px);
-  letter-spacing: -.05em;
-  margin: 0 0 8px;
-}
-.project-info p { font-size: 13px; color: #666760; margin: 0; }
 .external-link { margin-top: 35px; }
-
-.about-section { background: #e8e5dc; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13%; }
-.about-lead {
-  font-size: clamp(23px, 3vw, 40px);
-  line-height: 1.3;
-  letter-spacing: -.04em;
-  margin-top: 0;
-}
-.about-personal { font-size: 14px; line-height: 1.7; }
-.experience-list > div {
-  border-top: 1px solid #b8b6ad;
-  padding: 20px 0 25px;
-}
-.experience-list h3 { font-size: 24px; margin: 15px 0 6px; }
-.experience-list p { margin: 6px 0; font-size: 13px; }
-
-.contact-section { background: var(--ink); color: var(--paper); }
-.contact-section h2 {
-  font-size: clamp(65px, 10vw, 150px);
-  line-height: .95;
-  letter-spacing: -.08em;
-  margin: 65px 0;
-}
-.contact-email {
-  display: inline-flex;
-  gap: 50px;
-  border-bottom: 1px solid var(--paper);
-  padding-bottom: 14px;
-  font-size: 20px;
-}
-.site-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 25px 5%;
-  font-size: 10px;
-  letter-spacing: 1px;
-}
 
 @media (max-width: 800px) {
   .site-header { grid-template-columns: 1fr auto; gap: 20px; }
   .location { display: none; }
   .site-header nav { gap: 16px; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-rail { flex-direction: row; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 5%; }
-  .hero-rail span:last-child { writing-mode: initial; }
-  .hero-content { padding: 75px 5%; }
-  .hero h1 { margin-bottom: 45px; }
-  .hero-bottom { align-items: start; flex-direction: column; }
   .section-shell { padding: 65px 5%; }
-  .section-heading { grid-template-columns: 1fr; gap: 20px; }
-  .project-row { grid-template-columns: 40px 1fr; }
-  .project-category { grid-column: 2; text-align: left; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .site-footer { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .project-row { transition: none; }
 }
-
-/* Employer portfolio refinements */
-.portfolio .about-section {
-  background-color: #dedbd0;
-}
-
-.portfolio .about-section .section-heading h2 {
-  color: #111111;
-  font-weight: 800;
-  opacity: 1;
-  letter-spacing: -0.045em;
-}
-
-.portfolio .contact-section h2 {
-  font-size: clamp(3.25rem, 7.5vw, 7.5rem);
-  letter-spacing: -0.06em;
-}
-
-/* Portfolio design revision 2 */
 .portfolio {
   --accent: #344b5a;
 }
-
-.portfolio .hero h1 {
-  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
-  line-height: 1.12;
-  letter-spacing: -0.045em;
-  font-weight: 700;
-}
-
-.portfolio .hero h1 span {
-  display: block;
-  margin-top: 1.4rem;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
-  font-weight: 500;
-  font-style: normal;
-  letter-spacing: -0.025em;
-  color: #344b5a;
-}
-
-.portfolio .section-heading h2 {
-  color: #18232c;
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.035em;
-  opacity: 1;
-}
-
-.portfolio .about-section .section-heading h2 {
-  color: #111820;
-  font-weight: 800;
-  opacity: 1;
-}
-
-.portfolio .contact-section h2 {
-  font-size: clamp(2.8rem, 6vw, 6rem);
-  letter-spacing: -0.045em;
-  line-height: 1.1;
-}
-
-.portfolio .project-info h3 {
-  color: #18232c;
-  font-weight: 700;
-}
-
-@media (max-width: 800px) {
-  .portfolio .hero h1 {
-    font-size: clamp(2.5rem, 8vw, 3.8rem);
-  }
-}
-
-/* Portfolio visibility correction */
-.portfolio .hero h1 {
-    color: #17202a !important;
-    -webkit-text-fill-color: #17202a !important;
-    opacity: 1;
-    font-size: clamp(2.8rem, 4.5vw, 4.8rem);
-}
-
-.portfolio .hero h1 span {
-    display: block;
-    font-size: clamp(1.3rem, 2.2vw, 2rem);
-    font-weight: 500;
-    color: #344b5a !important;
-    -webkit-text-fill-color: #344b5a !important;
-    margin-top: 16px;
-}
-
-.portfolio .section-heading h2 {
-    color: #17202a !important;
-    -webkit-text-fill-color: #17202a !important;
-    opacity: 1;
-}
-
-.portfolio .contact-section h2 {
-    color: #f5f3ed !important;
-    -webkit-text-fill-color: #f5f3ed !important;
-}
-
-.portfolio .contact-intro {
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 35px;
-    color: #dedbd0;
-}
-
-/* Language selector */
 .portfolio .language-toggle {
   display: flex;
   gap: 8px;
@@ -325,7 +81,7 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
   font: inherit;
   font-size: 12px;
   cursor: pointer;
-  opacity: .55;
+  opacity: 1;
 }
 
 .portfolio .language-toggle button[aria-pressed="true"] {
@@ -348,8 +104,6 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
     flex-wrap: wrap;
   }
 }
-
-/* Appearance settings */
 .portfolio .appearance-panel {
   display: flex;
   justify-content: flex-end;
@@ -381,8 +135,6 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
-
-/* Dark mode */
 .portfolio.theme-dark {
   --ink: #e8e9e5;
   --paper: #1c2328;
@@ -391,73 +143,8 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
   color: var(--ink);
 }
 
-.portfolio.theme-dark .about-section {
-  background: #293238 !important;
-}
-
-.portfolio.theme-dark .contact-section {
-  background: #11181d;
-}
-
-.portfolio.theme-dark .hero h1,
-.portfolio.theme-dark .section-heading h2,
-.portfolio.theme-dark .project-info h3 {
-  color: #f2f0e9 !important;
-  -webkit-text-fill-color: #f2f0e9 !important;
-}
-
-.portfolio.theme-dark .project-info p {
-  color: #c2c9cb;
-}
-
-.portfolio.theme-dark .project-row:hover {
-  background: #344047;
-}
-
-.portfolio.theme-dark .experience-list > div {
-  border-color: #566168;
-}
-
-.portfolio.theme-dark .contact-section h2 {
-  color: #f2f0e9 !important;
-  -webkit-text-fill-color: #f2f0e9 !important;
-}
-
-
-/* Light and dark appearance corrections */
-.portfolio .contact-section,
-.portfolio .contact-section .section-index,
-.portfolio .contact-section .contact-email,
-.portfolio .contact-section a {
-  color: #f5f3ed !important;
-  -webkit-text-fill-color: #f5f3ed !important;
-  opacity: 1;
-}
-
 .portfolio.theme-dark .section-index,
-.portfolio.theme-dark .small-label,
-.portfolio.theme-dark .project-category,
-.portfolio.theme-dark .project-number,
-.portfolio.theme-dark .hero-bottom p,
-.portfolio.theme-dark .about-personal,
-.portfolio.theme-dark .experience-list p,
-.portfolio.theme-dark .site-footer {
-  color: #e3e7e8;
-}
-
-.portfolio.theme-dark .section-heading h2,
-.portfolio.theme-dark .about-section .section-heading h2,
-.portfolio.theme-dark .project-info h3 {
-  color: #f5f5f1 !important;
-  -webkit-text-fill-color: #f5f5f1 !important;
-}
-
-.portfolio.theme-dark .hero h1 span {
-  color: #c6d6df !important;
-  -webkit-text-fill-color: #c6d6df !important;
-}
-
-.portfolio.theme-dark .contact-intro {
+.portfolio.theme-dark .small-label {
   color: #e3e7e8;
 }
 
@@ -466,137 +153,6 @@ body { display: block; margin: 0; min-width: 320px; background: #f5f3ed; }
     justify-content: flex-start;
   }
 }
-/* Project row links and text colors v1 */
-
-/* Make the full project row clickable. */
-.portfolio .project-row {
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.portfolio .project-row:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: -3px;
-}
-
-/* Three restrained project accent colors. */
-.portfolio .project-row:nth-child(3n+1) {
-  --project-title: #285477;
-}
-
-.portfolio .project-row:nth-child(3n+2) {
-  --project-title: #21665e;
-}
-
-.portfolio .project-row:nth-child(3n+3) {
-  --project-title: #704e79;
-}
-
-.portfolio .project-row .project-info h3,
-.portfolio.theme-dark .project-row .project-info h3 {
-  color: var(--project-title) !important;
-  -webkit-text-fill-color: var(--project-title) !important;
-}
-
-.portfolio .project-row .project-category {
-  color: var(--project-title) !important;
-  -webkit-text-fill-color: var(--project-title) !important;
-  font-weight: 700;
-}
-
-/* Improve the selected projects heading. */
-.portfolio .work-section .section-heading h2 {
-  color: #263f59 !important;
-  -webkit-text-fill-color: #263f59 !important;
-}
-
-/* Subtle accent on the introduction and profile. */
-.portfolio .hero-bottom p {
-  color: #344e59;
-}
-
-.portfolio .about-lead {
-  color: #285451;
-}
-
-/* Dark mode uses lighter accent colors. */
-.portfolio.theme-dark .project-row:nth-child(3n+1) {
-  --project-title: #a4d3ef;
-}
-
-.portfolio.theme-dark .project-row:nth-child(3n+2) {
-  --project-title: #9cdecf;
-}
-
-.portfolio.theme-dark .project-row:nth-child(3n+3) {
-  --project-title: #dfbce9;
-}
-
-.portfolio.theme-dark .work-section .section-heading h2 {
-  color: #e1e9f3 !important;
-  -webkit-text-fill-color: #e1e9f3 !important;
-}
-
-.portfolio.theme-dark .hero-bottom p {
-  color: #d6e3ea;
-}
-
-.portfolio.theme-dark .about-lead {
-  color: #c1e7df;
-}
-
-/* Preserve existing hover behavior. */
-.portfolio .project-row:hover .project-info h3 {
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-}
-
-/* Keep motion minimal. */
-@media (prefers-reduced-motion: reduce) {
-  .portfolio .project-row {
-    transition: none;
-  }
-}
-
-/* Employer logos v1 */
-.portfolio .employer-heading {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.portfolio .employer-heading img {
-  width: 78px;
-  height: 58px;
-  object-fit: contain;
-  flex-shrink: 0;
-  background: #ffffff;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-.portfolio .employer-heading h3 {
-  margin: 0;
-  color: var(--ink);
-}
-
-.portfolio.theme-dark .employer-heading h3 {
-  color: #f5f5f1;
-}
-
-@media (max-width: 600px) {
-  .portfolio .employer-heading img {
-    width: 64px;
-    height: 50px;
-  }
-}
-
-/* Final editorial palette 2026 */
-
-/* Neutral, cool-toned surfaces without gradients. */
 :root,
 body {
   background: #f7f9fb;
@@ -609,60 +165,9 @@ body {
   --line: #ccd6dd;
 }
 
-.portfolio.theme-light .site-header,
-.portfolio.theme-light .work-section,
-.portfolio.theme-light .site-footer {
+.portfolio.theme-light .site-header {
   background: #ffffff;
 }
-
-.portfolio.theme-light .hero {
-  background: #f7f9fb;
-}
-
-/* About: a distinct, cooler background. */
-.portfolio.theme-light .about-section {
-  background: #e7eff3 !important;
-}
-
-.portfolio.theme-light .about-section .section-heading h2 {
-  color: #203b50 !important;
-  -webkit-text-fill-color: #203b50 !important;
-}
-
-.portfolio.theme-light .about-lead {
-  color: #244d60;
-  border-left: 3px solid #527f91;
-  padding-left: 23px;
-}
-
-.portfolio.theme-light .about-personal,
-.portfolio.theme-light .experience-list p {
-  color: #344b59;
-}
-
-.portfolio.theme-light .experience-list > div {
-  border-color: #bacbd4;
-}
-
-/* Alternate surfaces between sections. */
-.portfolio.theme-light .profile-section {
-  background: #ffffff;
-}
-
-.portfolio.theme-light .education-section {
-  background: #edf3f6;
-}
-
-.portfolio.theme-light .project-row:hover {
-  background: #eaf2f5;
-}
-
-.portfolio.theme-light .contact-section {
-  background: #173041;
-  color: #ffffff;
-}
-
-/* Corresponding dark-mode surfaces. */
 .portfolio.theme-dark {
   --paper: #192630;
   --ink: #edf3f6;
@@ -670,44 +175,83 @@ body {
   --line: #40515d;
 }
 
-.portfolio.theme-dark .site-header,
-.portfolio.theme-dark .work-section,
-.portfolio.theme-dark .site-footer {
+.portfolio.theme-dark .site-header {
   background: #1b2a34;
 }
-
-.portfolio.theme-dark .hero {
-  background: #192630;
+.portfolio .sr-only,
+.portfolio .skip-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.portfolio .skip-link:focus {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 14px 20px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.portfolio .site-header nav { align-items: center; flex-wrap: wrap; }
+.portfolio .site-header nav a,
+.portfolio .language-toggle button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+.portfolio .appearance-field select { min-height: 44px; }
+.portfolio .detail-columns > section { min-width: 0; }
+.portfolio h1,
+.portfolio h2,
+.portfolio h3 { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .portfolio .site-header { grid-template-columns: 1fr; gap: 12px; }
+  .portfolio .site-header nav { gap: 8px 16px; }
+  .portfolio .language-toggle { margin-left: 0; }
+  .portfolio .text-link { white-space: normal; }
+}
+html[data-theme="dark"],
+html[data-theme="dark"] body { background: #192630; }
+.portfolio > main > h1 { color: var(--ink); }
+.portfolio .shared-header { grid-template-columns: 1fr auto 1fr; }
+.portfolio .shared-header > .header-tools { justify-self: end; }
+.portfolio .menu-toggle {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.portfolio .menu-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.portfolio .shared-header nav[hidden],
+.portfolio .menu-toggle[hidden] { display: none; }
+@media (max-width: 600px) {
+  .portfolio .shared-header { grid-template-columns: 1fr auto; gap: 12px 16px; }
+  .portfolio .shared-header > .header-tools { grid-column: 1 / -1; justify-self: start; }
+  .portfolio .shared-header nav { grid-column: 1 / -1; flex-direction: column; align-items: stretch; gap: 0; }
+  .portfolio .shared-header nav a { justify-content: flex-start; border-bottom: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio *, .portfolio *::before, .portfolio *::after { animation: none !important; transition: none !important; }
 }
 
-.portfolio.theme-dark .about-section {
-  background: #273c4a !important;
+.portfolio .header-tools { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+.portfolio .screenshot-error button {
+  min-height: 44px; padding: 10px 16px; border: 1px solid var(--line);
+  background: var(--paper); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer;
 }
+.portfolio .screenshot-error button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.portfolio a[aria-current="location"] { text-decoration: underline; text-underline-offset: 5px; }
 
-.portfolio.theme-dark .about-lead {
-  color: #d5e8ef;
-  border-left: 3px solid #86b6c8;
-  padding-left: 23px;
-}
-
-.portfolio.theme-dark .profile-section {
-  background: #1b2a34;
-}
-
-.portfolio.theme-dark .education-section {
-  background: #223540;
-}
-
-.portfolio.theme-dark .contact-section {
-  background: #101e28;
-}
-
-.portfolio.theme-dark .project-row:hover {
-  background: #304655;
-}
-
-@media (max-width: 700px) {
-  .portfolio .about-lead {
-    padding-left: 16px;
-  }
-}
+.portfolio .recovery-button { margin-top: 24px; min-height: 44px; padding: 12px 20px; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); cursor: pointer; }
+.portfolio .recovery-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

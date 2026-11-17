@@ -1,79 +1,67 @@
-﻿import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { caseStudies } from "../data/projects";
 import useAppearance from "../hooks/useAppearance";
-import AppearanceControls from "../components/AppearanceControls";
+import NotFound from "./NotFound";
+import ProjectScreenshots from "../components/ProjectScreenshots";
+import SiteHeader from "../components/SiteHeader";
 import TechnologyLogo from "../components/TechnologyLogo";
 import "../styles/portfolio.css";
 import "../styles/project-detail.css";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const { i18n } = useTranslation();
-  const { theme, setTheme } = useAppearance();
+  const { hash, state } = useLocation();
+  const projectQuery = typeof state?.projectQuery === "string" ? state.projectQuery : "";
+  const workDestination = projectQuery ? `/?${new URLSearchParams({ q: projectQuery })}#work` : "/#work";
+  const { t, i18n } = useTranslation();
+  const { theme } = useAppearance();
 
-  const french = i18n.language.startsWith("fr");
-  const language = french ? "fr" : "en";
+  const language = i18n.resolvedLanguage === "fr" ? "fr" : "en";
 
   // Find the project that matches the URL.
-  const project = caseStudies.find((item) => item.slug === slug);
+  const project = caseStudies.find((item) => item.slug === slug?.toLowerCase());
 
   if (!project) {
-    return (
-      <main className="project-missing">
-        <h1>404</h1>
-        <p>{french ? "Projet introuvable." : "Project not found."}</p>
-        <Link to="/">{french ? "Accueil" : "Home"}</Link>
-      </main>
-    );
+    return <NotFound projectMissing />;
   }
+
+  const index = caseStudies.indexOf(project);
+  const adjacent = [["previous", caseStudies[index - 1]], ["next", caseStudies[index + 1]]];
 
   return (
     <div className={`portfolio theme-${theme} project-detail`}>
-      <header className="site-header">
-        <Link className="wordmark" to="/" aria-label="Michael Leigh">
-          ML<span>.</span>
-        </Link>
+      <Link className="skip-link" to="#top">{t("portfolio.skip")}</Link>
+      <SiteHeader />
 
-        <nav aria-label={french ? "Navigation" : "Navigation"}>
-          <Link to="/#work">{french ? "Projets" : "Projects"}</Link>
-          <Link to="/#about">{french ? "À propos" : "About"}</Link>
-          <Link to="/#contact">Contact</Link>
-
-          <div className="language-toggle" aria-label="Website language">
-            <button
-              type="button"
-              aria-pressed={!french}
-              onClick={() => i18n.changeLanguage("en")}
-            >
-              EN
-            </button>
-            <button
-              type="button"
-              aria-pressed={french}
-              onClick={() => i18n.changeLanguage("fr")}
-            >
-              FR
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <AppearanceControls theme={theme} setTheme={setTheme} />
-
-      <main className="project-detail-main">
-        <Link className="project-back" to="/#work">
-          ← {french ? "Retour aux projets" : "Back to projects"}
+      <main id="top" tabIndex={-1} className="project-detail-main">
+        <Link className="project-back" to={workDestination}>
+          ← {t("portfolio.detail.back")}
         </Link>
 
         <div className="detail-heading">
           <p className="section-index">
-            {french ? "ÉTUDE DE PROJET" : "PROJECT CASE STUDY"} / {project.number}
+            {t("portfolio.detail.caseStudy")} / {project.number}
           </p>
 
           <h1>{project.name}</h1>
           <p className="detail-summary">{project.summary[language]}</p>
         </div>
+
+        <nav className="detail-contents" aria-label={t("portfolio.onThisPage")}>
+          {project.screenshots?.length > 0 && <Link to="#screenshots" aria-current={hash === "#screenshots" ? "location" : undefined}>{t("portfolio.screenshots")}</Link>}
+          <Link to="#technologies" aria-current={hash === "#technologies" ? "location" : undefined}>{t("portfolio.detail.technologies")}</Link>
+          <Link to="#features" aria-current={hash === "#features" ? "location" : undefined}>{t("portfolio.detail.features")}</Link>
+        </nav>
+
+        <section className="project-facts" aria-labelledby="project-facts-title">
+          <h2 id="project-facts-title">{t("portfolio.projectFacts")}</h2>
+          <dl>
+            <div><dt>{t("portfolio.category")}</dt><dd>{t(`portfolio.projects.${project.number}.category`)}</dd></div>
+            <div><dt>{t("portfolio.demoAccess")}</dt><dd>{t(project.demo ? "portfolio.available" : "portfolio.unavailable")}</dd></div>
+            <div><dt>{t("portfolio.sourceAccess")}</dt><dd>{t(project.github ? "portfolio.available" : "portfolio.unavailable")}</dd></div>
+          </dl>
+        </section>
 
         <div className="detail-actions">
           {project.demo && (
@@ -82,7 +70,7 @@ export default function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {french ? "Voir la démonstration" : "View live demo"} ↗
+              {t("portfolio.detail.demo")} ↗<span className="sr-only"> ({t("portfolio.newTab")})</span>
             </a>
           )}
 
@@ -92,22 +80,28 @@ export default function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {french ? "Code sur GitHub" : "GitHub repository"} ↗
+              {t("portfolio.detail.source")} ↗<span className="sr-only"> ({t("portfolio.newTab")})</span>
             </a>
           )}
 
           {!project.demo && (
             <p className="detail-notice">
-              {french
-                ? "Démonstration publique non disponible actuellement."
-                : "Public live demo is not available yet."}
+              {t("portfolio.detail.noDemo")}
             </p>
           )}
         </div>
 
+        {project.screenshots?.length > 0 && <ProjectScreenshots key={project.slug} screenshots={project.screenshots} />}
+
+        {project.implementation && <section className="project-implementation" aria-labelledby="implementation-title">
+          <h2 id="implementation-title">{t('portfolio.implementation')}</h2>
+          <dl>{project.implementation.map(item => <div key={item.title.en}><dt>{item.title[language]}</dt><dd>{item.description[language]}</dd></div>)}</dl>
+          <a className="text-link" href={project.evidence} target="_blank" rel="noopener noreferrer">{t('portfolio.implementationSource')}<span className="sr-only"> ({t('portfolio.newTab')})</span></a>
+        </section>}
+
         <div className="detail-columns">
-          <section>
-            <h2>{french ? "Technologies" : "Technologies"}</h2>
+          <section id="technologies" tabIndex={-1}>
+            <h2>{t("portfolio.detail.technologies")}</h2>
             <ul className="detail-stack">
               {project.stack.map((item) => (
                 <li key={item}><TechnologyLogo name={item} /><span>{item}</span></li>
@@ -115,8 +109,8 @@ export default function ProjectDetail() {
             </ul>
           </section>
 
-          <section>
-            <h2>{french ? "Fonctionnalités" : "Implemented features"}</h2>
+          <section id="features" tabIndex={-1}>
+            <h2>{t("portfolio.detail.features")}</h2>
             <ul className="detail-features">
               {project.features[language].map((feature) => (
                 <li key={feature}>{feature}</li>
@@ -125,8 +119,19 @@ export default function ProjectDetail() {
           </section>
         </div>
 
-        <Link className="project-back bottom-back" to="/#work">
-          ← {french ? "Tous les projets" : "All projects"}
+        <p className="project-contact"><Link className="text-link" to="/#contact">{t("portfolio.discussProject")} ↗</Link></p>
+
+        {caseStudies.length > 1 && <nav className="project-pagination" aria-label={t("portfolio.detail.navigation")}>
+          {adjacent.filter(([, item]) => item).map(([direction, item]) => (
+            <Link key={direction} state={{ projectQuery }} to={`/projects/${item.slug}`} rel={direction === "previous" ? "prev" : "next"}>
+              <span className="small-label">{t(`portfolio.detail.${direction}`)}</span>
+              <span>{item.name}</span>
+            </Link>
+          ))}
+        </nav>}
+
+        <Link className="project-back bottom-back" to={workDestination}>
+          ← {t("portfolio.detail.all")}
         </Link>
       </main>
     </div>

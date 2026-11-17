@@ -1,0 +1,221 @@
+{
+  "browser": "151.0.7922.34",
+  "results": [
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "large-text",
+      "path": "/missing-page"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/projects/wordle"
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "mode": "forced-colors",
+      "path": "/missing-page"
+    }
+  ]
+}

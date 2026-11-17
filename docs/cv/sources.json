@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "path": "/Users/michaelleigh/Desktop/OFFICE-HIDE/CV-Final-2026/michael-leigh-cv-en.pdf",
+      "sha256": "dc709491a1f921fcc00ab390f71e5f174ecbcf509ecde427fcf8d6e90d0d0ff6"
+    },
+    {
+      "path": "/Users/michaelleigh/Desktop/OFFICE-HIDE/CV-Final-2026/michael-leigh-cv-fr.pdf",
+      "sha256": "ca119f76086a1934613918bbeebb2e16917499da0965593480d535380c631dd9"
+    },
+    {
+      "path": "/Users/michaelleigh/Downloads/CV_Michael_Leigh_Atelier_Informatique.pdf",
+      "sha256": "d96cda851fe8b972cd42db623a515bbcd841d84c61e282b27501c653c616d7ce"
+    }
+  ],
+  "otherSources": [
+    "src/data/professional.js",
+    "src/data/projects.js",
+    "src/data/homeCopy.js",
+    "user instruction: Rafisa ongoing, 19 October 2026 to 14 January 2027"
+  ],
+  "decisions": [
+    "Preserved nursing studies as not completed; no nursing degree claimed.",
+    "Featured Wordle only, in line with current approved portfolio scope.",
+    "No phone, street address, photograph, birth date or nationality invented.",
+    "Original CVs are unchanged and not copied into public assets."
+  ]
+}

@@ -1,0 +1,100 @@
+- main:
+  - region "Michael Leigh. Full-stack developer.":
+    - text: MICHAEL LEIGH / PORTFOLIO
+    - heading "Michael Leigh. Full-stack developer." [level=1]
+    - paragraph: I develop full-stack web applications, from interfaces and APIs to databases.
+    - paragraph: My path into web development combines formal training, personal projects and internships at Gaea21 and Rafisa.
+    - paragraph: Based in Vaud, Switzerland
+  - region "Technical skills":
+    - text: 01 / Skills
+    - heading "Technical skills" [level=2]
+    - heading "Frontend development" [level=3]
+    - list:
+      - listitem: React
+      - listitem: TypeScript
+      - listitem: JavaScript
+      - listitem: HTML5
+      - listitem: CSS3
+    - heading "Backend development" [level=3]
+    - list:
+      - listitem: Node.js
+      - listitem: Express
+      - listitem: Python
+      - listitem: Flask
+      - listitem: PHP
+      - listitem: REST APIs
+    - heading "Databases" [level=3]
+    - list:
+      - listitem: MySQL
+      - listitem: PostgreSQL
+      - listitem: SQLite
+    - heading "Design software" [level=3]
+    - list:
+      - listitem: Figma
+      - listitem: Canva
+      - listitem: Adobe
+    - heading "Testing & development" [level=3]
+    - list:
+      - listitem: Vitest
+      - listitem: Playwright
+      - listitem: pytest
+      - listitem: Vite
+      - listitem: Git
+      - listitem: GitHub
+    - heading "Soft skills" [level=3]
+    - paragraph: Calm · Patient · Willingness to learn
+  - region "Selected projects":
+    - text: 02 / Projects
+    - heading "Selected projects" [level=2]
+    - article:
+      - link "Wordle":
+        - /url: /projects/wordle
+        - heading "Wordle" [level=3]
+        - paragraph: A full-stack word game with player accounts, server-side game logic and saved game history.
+        - text: Project details ↗
+      - link "GitHub repository ↗ (opens in a new tab)":
+        - /url: https://github.com/DevRumiTech/wordle-project
+  - region "Professional experience":
+    - text: 03 / Professional experience
+    - heading "Professional experience" [level=2]
+    - article:
+      - text: CURRENT EXPERIENCE
+      - heading "Rafisa" [level=3]
+      - paragraph: Full-Stack Developer Intern
+      - paragraph: St-Légier, Vaud, Switzerland
+      - paragraph: 19 October 2026 – 14 January 2027
+    - article:
+      - text: PREVIOUS EXPERIENCE
+      - heading "Gaea21 NGO" [level=3]
+      - paragraph: Web Developer Intern
+      - paragraph: Geneva, Switzerland
+      - paragraph: June - September 2025
+  - region "Education & certifications":
+    - text: 04 / Education
+    - heading "Education & certifications" [level=2]
+    - article:
+      - text: 2025–2026
+      - heading "Certificate of Advanced Studies in Web Development" [level=3]
+      - paragraph: HE-Arc University of Applied Sciences
+      - paragraph: Neuchâtel, Switzerland
+    - article:
+      - text: 2023–2024
+      - heading "Meta Full-Stack Engineer Certificate" [level=3]
+      - paragraph: Coursera, authorised by Meta
+      - paragraph: Meta (USA) · Coursera
+  - region "Hobbies":
+    - text: 05 / Hobbies
+    - heading "Hobbies" [level=2]
+    - list:
+      - listitem: Shotokan karate
+      - listitem: Guitar
+      - listitem: Video games
+  - region "Contact":
+    - text: 06 / Contact
+    - heading "Contact" [level=2]
+    - paragraph: Full-stack developer based in Vaud, Switzerland.
+    - 'link "Email : rumi6864@gmail.com"':
+      - /url: mailto:rumi6864@gmail.com
+    - link "GitHub (opens in a new tab)":
+      - /url: https://github.com/DevRumiTech
+    - text: CV download unavailable — no document supplied.

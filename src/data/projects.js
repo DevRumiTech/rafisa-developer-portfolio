@@ -1,128 +1,105 @@
-﻿// Information is based on the existing GitHub projects.
-// Live demonstrations and source links are kept separately.
+// Add future verified internship projects here; see docs/ADDING-PROJECTS.md.
 export const caseStudies = [
   {
     number: "01",
-    slug: "alpine-clientflow",
-    name: "Alpine ClientFlow",
-    stack: ["React", "TypeScript", "TanStack Query", "Zod", "IndexedDB"],
-    github: "https://github.com/DevRumiTech/alpine-clientflow",
-    demo: "https://alpine-clientflow.vercel.app",
-    summary: {
-      en: "A browser-based client onboarding application for a Swiss financial-services setting.",
-      fr: "Une application de gestion de l'intégration des clients dans un contexte de services financiers suisses."
-    },
-    features: {
-      en: [
-        "Role-based workspaces",
-        "Six-step client onboarding",
-        "Compliance reviews",
-        "Browser data persistence",
-        "English and French interface"
-      ],
-      fr: [
-        "Espaces de travail selon les rôles",
-        "Intégration des clients en six étapes",
-        "Contrôles de conformité",
-        "Sauvegarde des données dans le navigateur",
-        "Interface en anglais et en français"
-      ]
-    }
-  },
-  {
-    number: "02",
-    slug: "verilot",
-    name: "VeriLot",
-    stack: ["React", "TypeScript", "Express", "PostgreSQL", "Prisma"],
-    github: "https://github.com/DevRumiTech/verilot",
-    demo: "https://verilot-seven.vercel.app",
-    summary: {
-      en: "A full-stack inventory system for serialized products, manufacturing batches and custody records.",
-      fr: "Un système full-stack de gestion des stocks, des produits sérialisés, des lots de fabrication et de leur suivi."
-    },
-    features: {
-      en: [
-        "Serialized product records",
-        "Manufacturing batch management",
-        "Custody history",
-        "Alerts and recalls",
-        "Read-only public demonstration"
-      ],
-      fr: [
-        "Gestion des produits sérialisés",
-        "Gestion des lots de fabrication",
-        "Historique des mouvements",
-        "Alertes et rappels de produits",
-        "Démonstration publique en lecture seule"
-      ]
-    }
-  },
-  {
-    number: "03",
-    slug: "rumipay",
-    name: "RumiPay",
-    stack: ["JavaScript", "HTML5", "CSS3", "Vite"],
-    github: "https://github.com/DevRumiTech/swiss-wallet-frontend",
-    demo: "https://swiss-wallet-frontend.vercel.app",
-    summary: {
-      en: "A multilingual Swiss digital-wallet interface with account, payment and transaction features.",
-      fr: "Une interface multilingue de portefeuille numérique suisse avec gestion des comptes, paiements et transactions."
-    },
-    features: {
-      en: [
-        "Account dashboard",
-        "Payment simulations",
-        "Transaction history",
-        "Rewards management",
-        "Four interface languages"
-      ],
-      fr: [
-        "Tableau de bord des comptes",
-        "Simulation de paiements",
-        "Historique des transactions",
-        "Gestion des récompenses",
-        "Interface en quatre langues"
-      ]
-    }
-  },
-  {
-    number: "04",
-    slug: "sql-ops-dashboard",
-    name: "SQL Ops Dashboard",
-    stack: ["Python", "Flask", "SQLite", "JavaScript"],
-    github: "https://github.com/DevRumiTech/sql-ops-dashboard",
-    demo: "https://sql-ops-dashboard.vercel.app",
-    summary: {
-      en: "A retail analytics dashboard using a Python backend, relational database and interactive reporting.",
-      fr: "Un tableau de bord d'analyse commerciale utilisant Python, une base de données relationnelle et des rapports interactifs."
-    },
-    features: {
-      en: [
-        "Revenue and margin reporting",
-        "SQL-based analytics",
-        "Interactive filters",
-        "Product performance tables",
-        "CSV export"
-      ],
-      fr: [
-        "Analyse du chiffre d'affaires et des marges",
-        "Analyses reposant sur SQL",
-        "Filtres interactifs",
-        "Tableaux de performance des produits",
-        "Export CSV"
-      ]
-    }
-  },
-  {
-    number: "05",
     slug: "wordle",
     name: "Wordle",
     stack: ["React", "Node.js", "Express", "MySQL"],
-    github: null,
+    github: "https://github.com/DevRumiTech/wordle-project",
     demo: null,
+    evidence: "https://github.com/DevRumiTech/wordle-project/blob/48b414bdb0ad65c892f09fdf3b7b25c6f32f0d5e/README.md",
+    screenshots: [
+      {
+            "src": "/projects/wordle/gameplay-desktop.png",
+            "view": "desktop",
+            "width": 1440,
+            "height": 1335,
+            "blob": "0e807eefcc504a486c8d788a3a1bf8426cb958da",
+            "label": {
+                  "en": "Gameplay · desktop",
+                  "fr": "Partie · ordinateur"
+            },
+            "alt": {
+                  "en": "Wordle English game after two accepted guesses, showing letter feedback, four attempts remaining and the on-screen keyboard.",
+                  "fr": "Partie Wordle en anglais après deux essais acceptés, avec les indices des lettres, quatre essais restants et le clavier virtuel."
+            },
+            "note": {
+                  "en": "Genuine local test session. Original interface labels are English; profile details are collapsed.",
+                  "fr": "Véritable session de test locale. Les libellés de l’interface originale sont en anglais ; les informations du profil sont repliées."
+            }
+      },
+      {
+            "src": "/projects/wordle/gameplay-mobile.png",
+            "view": "mobile",
+            "width": 390,
+            "height": 1153,
+            "blob": "992dd5d44c05fc79c9d359f390af9a2b300c291c",
+            "label": {
+                  "en": "Gameplay · mobile",
+                  "fr": "Partie · mobile"
+            },
+            "alt": {
+                  "en": "Wordle French game after two accepted guesses, showing letter feedback, four attempts remaining and the on-screen keyboard.",
+                  "fr": "Partie Wordle en français après deux essais acceptés, avec les indices des lettres, quatre essais restants et le clavier virtuel."
+            },
+            "note": {
+                  "en": "Genuine local test session. Original interface labels are English; profile details are collapsed.",
+                  "fr": "Véritable session de test locale. Les libellés de l’interface originale sont en anglais ; les informations du profil sont repliées."
+            }
+      },
+      {
+            "src": "/projects/wordle/signin-desktop.png",
+            "view": "desktop",
+            "width": 1440,
+            "height": 1000,
+            "blob": "2fe4cd2a43cfbcf829de734d66605ab6b65f3fcf",
+            "alt": {
+                  "en": "Wordle sign-in form on desktop.",
+                  "fr": "Formulaire de connexion Wordle sur ordinateur."
+            },
+            "note": {
+                  "en": "Original English interface captured locally. No player information is displayed.",
+                  "fr": "Interface originale en anglais, capturée localement. Aucune donnée de joueur n’est affichée."
+            },
+            "label": {
+                  "en": "Sign-in · desktop",
+                  "fr": "Connexion · ordinateur"
+            }
+      },
+      {
+            "src": "/projects/wordle/signin-mobile.png",
+            "view": "mobile",
+            "width": 390,
+            "height": 844,
+            "blob": "fe93477b0e8b04080006407d95307f314a54b176",
+            "alt": {
+                  "en": "Wordle sign-in form on mobile.",
+                  "fr": "Formulaire de connexion Wordle sur mobile."
+            },
+            "note": {
+                  "en": "Original English interface captured locally. No player information is displayed.",
+                  "fr": "Interface originale en anglais, capturée localement. Aucune donnée de joueur n’est affichée."
+            },
+            "label": {
+                  "en": "Sign-in · mobile",
+                  "fr": "Connexion · mobile"
+            }
+      }
+],
+    implementation: [
+      { title: { en: "Interface", fr: "Interface" }, description: {
+        en: "The React interface accepts physical and virtual keyboard input and restores unfinished games.",
+        fr: "L’interface React accepte les claviers physique et virtuel et restaure les parties inachevées." } },
+      { title: { en: "Game logic", fr: "Logique de jeu" }, description: {
+        en: "The Express backend validates five-letter guesses, evaluates repeated letters in two passes and calculates scores for up to six attempts.",
+        fr: "Le backend Express valide les mots de cinq lettres, évalue les lettres répétées en deux passes et calcule les scores sur six essais au maximum." } },
+      { title: { en: "Persistence", fr: "Persistance" }, description: {
+        en: "MySQL stores games and sessions. Authenticated players can review their personal history and statistics.",
+        fr: "MySQL conserve les parties et les sessions. Les joueurs authentifiés peuvent consulter leur historique personnel et leurs statistiques." } },
+    ],
     summary: {
-      en: "A full-stack word game developed during my Rafisa internship, with player accounts and persistent game history.",
-      fr: "Un jeu de mots full-stack développé durant mon stage chez Rafisa, avec comptes utilisateurs et historique des parties."
+      en: "A full-stack word game with player accounts, server-side game logic and saved game history.",
+      fr: "Un jeu de mots full-stack avec comptes utilisateurs, logique de jeu côté serveur et historique des parties."
     },
     features: {
       en: [

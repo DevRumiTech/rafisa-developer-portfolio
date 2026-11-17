@@ -1,0 +1,23 @@
+{
+  "root": "/Users/michaelleigh/Desktop/Rafisa-Internship/Rafisa-Project 1/wordle-project-master",
+  "mode": "Unmodified real app; unauthenticated sign-in; memory sessions; no database or account access; only GET /api/auth/me allowed",
+  "browser": "151.0.7922.34",
+  "files": {
+    "frontend/src/App.css": "a2c2efd8228a2dfddf2bfd85fb3ba487a04fafe167ceb171dc4c1e598e783b46",
+    "frontend/src/App.jsx": "995bb95aee8107229abbe1a5bfb59e5a5a9cc7d65e9bd4730c1ff4f2da53c70e",
+    "frontend/src/api/auth.js": "f2c029caca0b48553fd3456f8f912214a35f82be5e4dcc93dbcce37d35602077",
+    "frontend/src/api/games.js": "f496ef934aca85d3019cc3aff0036b7dc406275ffd48256df1d08ba2cca8ecb6",
+    "frontend/src/assets/hero.png": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+    "frontend/src/assets/react.svg": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+    "frontend/src/assets/vite.svg": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+    "frontend/src/game/GameHistory.jsx": "2707ab3d2556a68fc1a18f897160cd9fcb18e6643d1cfa77d89785b5808365ce",
+    "frontend/src/game/WordleGame.jsx": "dea5e695d79419b42edf7f103505b806dec9ef59eeb48d61c0124eebcb769c0d",
+    "frontend/src/game/activeGame.js": "70c72e9cf045b7618ade4f57dea37f0a1963cf86660ff6eea753b53e787ad669",
+    "frontend/src/game/logic.js": "c2df42bf306e416d9846b6b13aa4f0051b859a209fdcc567600511ea6f890e9c",
+    "frontend/src/index.css": "fda85fffe7f006d822fb9ab4e774b9e2b8fadffa73a3806b038dc0b8456cbbeb",
+    "frontend/src/main.jsx": "4b4b864dbe45253425d0c925337180ec07e204295179f80f59551216f466f618",
+    "backend/app.js": "5359859f625f61b04e9946ea89a4254bea74cd1ce52727b9316afb7bcd780c2e",
+    "backend/routes/auth.js": "ecfed5f6b25864690c251c027e770bb32890a9062f9cc9d540779986998989b6",
+    "frontend/package-lock.json": "2eebfcbfb8401657a3909ee6f582617057efc3425f2dff66be050c95590fbca1"
+  }
+}

@@ -1,0 +1,62 @@
+- main:
+  - link "← Back to projects":
+    - /url: /#work
+  - paragraph: PROJECT CASE STUDY / 01
+  - heading "Wordle" [level=1]
+  - paragraph: A full-stack word game with player accounts, server-side game logic and saved game history.
+  - navigation "On this project page":
+    - link "Project screenshots":
+      - /url: /projects/wordle#screenshots
+    - link "Technologies":
+      - /url: /projects/wordle#technologies
+    - link "Implemented features":
+      - /url: /projects/wordle#features
+  - region "Project at a glance":
+    - heading "Project at a glance" [level=2]
+    - term: Category
+    - definition: FULL-STACK / WORD GAME
+    - term: Live demo
+    - definition: No public link provided
+    - term: Source code
+    - definition: Linked below
+  - link "GitHub repository ↗ (opens in a new tab)":
+    - /url: https://github.com/DevRumiTech/wordle-project
+  - paragraph: Public live demo is not available yet.
+  - region "Project screenshots":
+    - heading "Project screenshots" [level=2]
+    - group "Screenshot view":
+      - button "Desktop" [pressed]
+      - button "Mobile"
+    - figure "Wordle sign-in form on desktop. Original English interface captured locally. No player information is displayed.":
+      - img "Wordle sign-in form on desktop."
+      - text: Wordle sign-in form on desktop. Original English interface captured locally. No player information is displayed.
+    - link "View full-size image ↗":
+      - /url: /projects/wordle/signin-desktop.png
+  - region "How it works":
+    - heading "How it works" [level=2]
+    - term: Interface
+    - definition: The React interface accepts physical and virtual keyboard input and restores unfinished games.
+    - term: Game logic
+    - definition: The Express backend validates five-letter guesses, evaluates repeated letters in two passes and calculates scores for up to six attempts.
+    - term: Persistence
+    - definition: MySQL stores games and sessions. Authenticated players can review their personal history and statistics.
+    - link "Read the project documentation (opens in a new tab)":
+      - /url: https://github.com/DevRumiTech/wordle-project/blob/48b414bdb0ad65c892f09fdf3b7b25c6f32f0d5e/README.md
+  - heading "Technologies" [level=2]
+  - list:
+    - listitem: React
+    - listitem: Node.js
+    - listitem: Express
+    - listitem: MySQL
+  - heading "Implemented features" [level=2]
+  - list:
+    - listitem: Registration and authentication
+    - listitem: English and French dictionaries
+    - listitem: Server-side game logic
+    - listitem: Saved game history
+    - listitem: Player statistics
+  - paragraph:
+    - link "Discuss this project ↗":
+      - /url: /#contact
+  - link "← All projects":
+    - /url: /#work

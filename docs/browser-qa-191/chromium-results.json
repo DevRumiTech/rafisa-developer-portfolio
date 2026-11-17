@@ -1,0 +1,659 @@
+{
+  "engine": "chromium",
+  "browser": "151.0.7922.34",
+  "results": [
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 320,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 320,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 320,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 320,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 320,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 320,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 320,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 320,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 320,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 390,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 390,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 390,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 390,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 390,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 390,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 390,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 390,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 600,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 600,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 600,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 600,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 600,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 600,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 600,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 600,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 600,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 600,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 600,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 600,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 600,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 600,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 600,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 600,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 601,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 601,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 601,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 601,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 601,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 601,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 601,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 601,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 601,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 601,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 601,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 601,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 601,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 601,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 601,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 601,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 768,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 768,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 768,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 768,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 768,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 768,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 768,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 768,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "/",
+      "scroll": 1440,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 1440,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 1440,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 1440,
+      "lang": "en",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "theme": "light",
+      "path": "/",
+      "scroll": 1440,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 248, 246)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 4.8527358628433825
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "theme": "light",
+      "path": "/projects/wordle",
+      "scroll": 1440,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(247, 249, 251)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.92258716565972
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/",
+      "scroll": 1440,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 35, 45)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 6.399873063183976
+    },
+    {
+      "width": 1440,
+      "language": "fr",
+      "theme": "dark",
+      "path": "/projects/wordle",
+      "scroll": 1440,
+      "lang": "fr",
+      "h1": 1,
+      "surface": "rgb(25, 38, 48)",
+      "brokenImages": [],
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "minimumSampledContrast": 13.77540392042404
+    },
+    {
+      "width": 390,
+      "motion": "normal-to-reduced",
+      "typingHeightBefore": 88.28125,
+      "typingHeightAfter": 88.28125
+    },
+    {
+      "width": 1440,
+      "motion": "normal-to-reduced",
+      "typingHeightBefore": 69.0625,
+      "typingHeightAfter": 69.0625
+    }
+  ],
+  "errors": []
+}
