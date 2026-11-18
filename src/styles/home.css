@@ -387,3 +387,19 @@
   background: #263744;
   border-color: #526b7b;
 }
+@media (min-width: 701px) {
+  .ml-showcase-heading-layout {
+    grid-template-columns: minmax(0, 1fr) clamp(180px, 22vw, 300px);
+    justify-content: stretch;
+    column-gap: clamp(24px, 4vw, 60px);
+  }
+
+  .ml-showcase-heading-layout .ml-showcase-portrait {
+    transform: none;
+    justify-self: end;
+  }
+
+  .ml-showcase-heading-layout h1 {
+    font-size: clamp(3.4rem, 7vw, 7.2rem);
+  }
+}
