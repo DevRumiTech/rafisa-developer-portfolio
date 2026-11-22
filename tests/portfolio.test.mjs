@@ -137,8 +137,8 @@ test('portfolio regression suite', async (suite) => {
         // Test-only entries verify growth without publishing invented project information.
         for (let index = 2; index <= 5; index++) caseStudies.push({ ...original[0], slug: `test-${index}`, name: `Test ${index}`, screenshots: [] });
         await navigate('/projects');
-        assert.equal(document.querySelectorAll('.ml-project-link').length, 5);
-        assert.equal(document.querySelectorAll('.ml-project-link img').length, 1);
+        assert.deepEqual([...document.querySelectorAll('.ml-project-link')].map(a => a.getAttribute('href')), ['/projects/test-4', '/projects/test-5']);
+        assert.equal(document.querySelectorAll('.ml-project-link img').length, 0);
         await navigate('/');
         assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
         assert.equal(document.querySelectorAll('.ml-project-link').length, 3);
@@ -152,6 +152,37 @@ test('portfolio regression suite', async (suite) => {
           await language(code);
           assert.ok(document.querySelector('.ml-projects-empty').textContent.length > 10);
           assert.equal(document.querySelectorAll('.ml-project-link').length, 0);
+        }
+      } finally { caseStudies.splice(0, caseStudies.length, ...original); }
+      await navigate('/');
+      await language('en');
+    });
+    await suite.test('listing boundary stays exclusive at every catalog size and samples have no links', async () => {
+      const original = [...caseStudies];
+      const { temporaryProject } = await server.ssrLoadModule('/src/data/projectSelection.js');
+      assert.equal(temporaryProject.github, '');
+      assert.equal(temporaryProject.demo, '');
+      try {
+        for (let count = 0; count <= 6; count++) {
+          caseStudies.splice(0, caseStudies.length, ...Array.from({ length: count }, (_, index) => ({ ...original[0], slug: `sample-${index}`, name: `Sample ${index}` })));
+          await navigate('/projects');
+          await navigate('/');
+          const homeLinks = [...document.querySelectorAll('.ml-project-link')].map(a => a.getAttribute('href'));
+          assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
+          assert.equal(homeLinks.length, Math.min(count, 3));
+          assert.equal(document.querySelectorAll('.ml-placeholder a, a[href=""], a[href="#"]').length, 0);
+          for (const card of document.querySelectorAll('.ml-placeholder')) {
+            assert.ok(card.querySelector('svg'));
+            assert.equal(card.querySelectorAll('.ml-project-stack li').length, 2);
+          }
+          await click(document.querySelector('.ml-more-projects'));
+          const moreLinks = [...document.querySelectorAll('.ml-project-link')].map(a => a.getAttribute('href'));
+          assert.deepEqual(moreLinks, caseStudies.slice(3).map(p => `/projects/${p.slug}`));
+          assert.ok(moreLinks.every(href => !homeLinks.includes(href)));
+          if (count <= 3) for (const code of ['en', 'fr']) {
+            await language(code);
+            assert.equal(document.querySelector('.ml-projects-empty').textContent, code === 'en' ? 'More projects coming soon' : 'D’autres projets arrivent bientôt');
+          }
         }
       } finally { caseStudies.splice(0, caseStudies.length, ...original); }
       await navigate('/');

@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Hand, Guitar, Gamepad2 } from 'lucide-react';
 import { professional } from '../data/professional';
 import { homeCopy } from '../data/homeCopy';
-import { caseStudies } from '../data/projects';
+import { selectProjects } from '../data/projectSelection';
+import TemporaryProjectCard, { ProjectPlaceholderVisual } from '../components/TemporaryProjectCard';
 import ProjectCard from '../components/ProjectCard';
 import CopyEmail from '../components/CopyEmail';
 import { projectCopy } from '../data/projectCopy';
@@ -24,6 +25,7 @@ export default function Home() {
   const language = i18n.resolvedLanguage === 'fr' ? 'fr' : 'en';
   const c = homeCopy[language];
   const pc = projectCopy[language];
+  const { featured } = selectProjects();
   const [year] = useState(() => new Date().getFullYear());
   const details = professional[language];
   const { theme } = useAppearance();
@@ -71,15 +73,12 @@ export default function Home() {
         <div className="ml-showcase-project-grid">
           {/* Only completed catalog entries get routes. Empty slots are temporary UI,
               automatically replaced in catalog order; the fourth card always opens the archive. */}
-          {Array.from({ length: 3 }, (_, index) => caseStudies[index]
-            ? <ProjectCard key={caseStudies[index].slug} project={caseStudies[index]} language={language} />
-            : <article className="ml-showcase-card ml-placeholder" data-animate key={`placeholder-${index}`}>
-                <div className="ml-showcase-visual ml-project-fallback" aria-hidden="true"><strong>{String(index + 1).padStart(2, '0')}</strong></div>
-                <div className="ml-showcase-project-meta"><h3>{pc.project} {index + 1}</h3><p>{pc.comingSoon}</p></div>
-              </article>)}
+          {Array.from({ length: 3 }, (_, index) => featured[index]
+            ? <ProjectCard key={featured[index].slug} project={featured[index]} language={language} />
+            : <TemporaryProjectCard key={`placeholder-${index}`} number={index + 1} language={language} />)}
           <article className="ml-showcase-card" data-animate>
-            <Link className="ml-more-projects" to="/projects">
-              <div className="ml-showcase-visual ml-project-fallback" aria-hidden="true"><strong>＋</strong></div>
+            <Link className="ml-more-projects ml-card-content" to="/projects">
+              <ProjectPlaceholderVisual more />
               <div className="ml-showcase-project-meta"><h3>{pc.more}</h3><p>{pc.browse}</p></div>
             </Link>
           </article>

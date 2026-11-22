@@ -19,7 +19,7 @@ try {
     try {
       await page.goto(origin);
       await page.locator(`button[lang="${language}"]`).click();
-      for (const path of ['/', '/projects/wordle', '/missing-page']) {
+      for (const path of ['/', '/projects', '/projects/wordle', '/missing-page']) {
         await page.goto(origin + path);
         await page.locator('h1').waitFor();
         // Text scaling tests CSS rem behavior; not a claim of browser UI zoom.

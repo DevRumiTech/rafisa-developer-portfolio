@@ -48,6 +48,26 @@ try {
         assert.ok(layout.scroll <= layout.width + 1, `${width}/${language}/${theme}${path}: horizontal overflow ${layout.scroll}`);
         assert.equal(layout.lang, language); assert.equal(layout.theme, theme); assert.equal(layout.h1, 1);
         assert.deepEqual(layout.brokenImages, []);
+        if (path === '/') {
+          const cards = await page.locator('#work .ml-showcase-card').evaluateAll(elements => elements.map(el => {
+            const box = el.getBoundingClientRect();
+            const visual = el.querySelector('.ml-showcase-visual').getBoundingClientRect();
+            return { x: box.x, y: box.y, width: box.width, height: box.height, visualHeight: visual.height };
+          }));
+          assert.equal(cards.length, 4);
+          for (const card of cards) {
+            assert.ok(Math.abs(card.width - cards[0].width) <= 1, 'Equal card widths');
+            assert.ok(Math.abs(card.height - cards[0].height) <= 1, 'Equal card heights');
+            assert.ok(Math.abs(card.visualHeight - cards[0].visualHeight) <= 1, 'Equal image heights');
+          }
+          assert.equal(new Set(cards.map(card => Math.round(card.x))).size, width <= 700 ? 1 : 2);
+          assert.equal(new Set(cards.map(card => Math.round(card.y))).size, width <= 700 ? 4 : 2);
+          assert.equal(await page.locator('.ml-placeholder a, a[href=""]').count(), 0);
+        }
+        if (path === '/projects') {
+          assert.equal(await page.locator('.ml-project-link').count(), 0);
+          assert.equal(await page.locator('.ml-projects-empty').textContent(), language === 'en' ? 'More projects coming soon' : 'D’autres projets arrivent bientôt');
+        }
         if (path === '/') assert.equal(layout.surface, theme === 'dark' ? 'rgb(25, 35, 45)' : 'rgb(247, 248, 246)', 'Theme must change the rendered surface');
         const contrasts = await page.locator('.ml-showcase-kicker, .ml-background, .cv-unavailable, .detail-summary, .project-implementation dd, main.section-shell h1').evaluateAll(elements => {
           const rgb = value => value.match(/[\d.]+/g)?.map(Number);
