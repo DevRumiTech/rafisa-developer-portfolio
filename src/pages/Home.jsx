@@ -1,10 +1,13 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Hand, Guitar, Gamepad2 } from 'lucide-react';
 import { professional } from '../data/professional';
 import { homeCopy } from '../data/homeCopy';
 import { caseStudies } from '../data/projects';
+import ProjectCard from '../components/ProjectCard';
+import CopyEmail from '../components/CopyEmail';
+import { projectCopy } from '../data/projectCopy';
 import { cvDocuments } from '../data/cv';
 import useAppearance from '../hooks/useAppearance';
 import useEntranceMotion from '../hooks/useEntranceMotion';
@@ -20,6 +23,8 @@ export default function Home() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage === 'fr' ? 'fr' : 'en';
   const c = homeCopy[language];
+  const pc = projectCopy[language];
+  const [year] = useState(() => new Date().getFullYear());
   const details = professional[language];
   const { theme } = useAppearance();
   const page = useRef(null);
@@ -29,7 +34,7 @@ export default function Home() {
     <SiteHeader />
     <main id="top" tabIndex={-1}>
       <section id="about" className="ml-showcase-hero" aria-labelledby="home-title">
-        <div className="ml-showcase-hero-head"><span>MICHAEL LEIGH / PORTFOLIO</span><span>VAUD, CH / 2026</span></div>
+        <div className="ml-showcase-hero-head"><span>MICHAEL LEIGH / PORTFOLIO</span><span>VAUD, CH / {year}</span></div>
         <div className="ml-showcase-heading-layout">
           <h1 id="home-title"><span className="ml-head-first">Michael</span><span className="ml-head-color">Leigh.</span><span className="ml-head-third">{c.role}</span></h1>
           <figure className="ml-showcase-portrait">
@@ -64,27 +69,20 @@ export default function Home() {
       <section className="ml-showcase-work" id="work" aria-labelledby="work-title">
         <span className="ml-showcase-kicker">02 / {t('nav.work')}</span><h2 id="work-title" data-animate>{c.projects}</h2>
         <div className="ml-showcase-project-grid">
-          {caseStudies.map(project => <article className="ml-showcase-card" data-animate key={project.slug}>
-            <Link className="ml-project-link" to={`/projects/${project.slug}`} aria-labelledby={`project-${project.slug}`}>
-              <div className="ml-showcase-visual ml-wordle-preview">
-                <div className="ml-wordle-browser-bar" aria-hidden="true">
-                  <div className="ml-wordle-browser-dots" />
-                  <span>Wordle</span>
-                </div>
-                <img
-                  src="/projects/wordle/gameplay-desktop.png"
-                  width="1440"
-                  height="1335"
-                  alt={language === 'fr' ? 'Capture réelle du jeu Wordle' : 'Actual Wordle gameplay screenshot'}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="ml-showcase-project-meta"><h3 id={`project-${project.slug}`}>{project.name}</h3><p>{project.summary[language]}</p><span className="ml-showcase-case-link">{c.details} ↗</span></div>
+          {/* Only completed catalog entries get routes. Empty slots are temporary UI,
+              automatically replaced in catalog order; the fourth card always opens the archive. */}
+          {Array.from({ length: 3 }, (_, index) => caseStudies[index]
+            ? <ProjectCard key={caseStudies[index].slug} project={caseStudies[index]} language={language} />
+            : <article className="ml-showcase-card ml-placeholder" data-animate key={`placeholder-${index}`}>
+                <div className="ml-showcase-visual ml-project-fallback" aria-hidden="true"><strong>{String(index + 1).padStart(2, '0')}</strong></div>
+                <div className="ml-showcase-project-meta"><h3>{pc.project} {index + 1}</h3><p>{pc.comingSoon}</p></div>
+              </article>)}
+          <article className="ml-showcase-card" data-animate>
+            <Link className="ml-more-projects" to="/projects">
+              <div className="ml-showcase-visual ml-project-fallback" aria-hidden="true"><strong>＋</strong></div>
+              <div className="ml-showcase-project-meta"><h3>{pc.more}</h3><p>{pc.browse}</p></div>
             </Link>
-            {project.github && <a className="ml-project-source" href={project.github} target="_blank" rel="noopener noreferrer">{t('portfolio.detail.source')} ↗<span className="sr-only"> ({t('portfolio.newTab')})</span></a>}
-            {project.demo && <a className="ml-project-source ml-project-demo" href={project.demo} target="_blank" rel="noopener noreferrer">{t('portfolio.detail.demo')} ↗<span className="sr-only"> ({t('portfolio.newTab')})</span></a>}
-          </article>)}
+          </article>
         </div>
       </section>
       <section className="ml-showcase-experience" id="experience" aria-labelledby="experience-title">
@@ -107,13 +105,14 @@ export default function Home() {
       <section className="ml-showcase-contact" id="contact" aria-labelledby="contact-title">
         <span className="ml-showcase-kicker">06 / {c.contact}</span><h2 id="contact-title" data-animate>{c.contact}</h2><p>{c.contactTagline}</p>
         <div className="ml-contact-links">
-          <a href="mailto:rumi6864@gmail.com">{c.email}<span className="sr-only">: rumi6864@gmail.com</span></a>
+          <a href="mailto:rumi6864@gmail.com">{c.email}<span>: rumi6864@gmail.com</span></a>
           <a href="https://github.com/DevRumiTech" target="_blank" rel="noopener noreferrer">GitHub<span className="sr-only"> ({t('portfolio.newTab')})</span></a>
           <a href="https://www.linkedin.com/in/michael-leigh-0b73221ab/" target="_blank" rel="noopener noreferrer">LinkedIn<span className="sr-only"> ({t('portfolio.newTab')})</span></a>
           <CvDownload documents={cvDocuments} language={language} copy={c} />
         </div>
+        <CopyEmail language={language} />
       </section>
     </main>
-    <footer className="ml-showcase-footer"><span>© 2026 MICHAEL LEIGH</span><Link to="#top">{t('portfolio.back')} ↑</Link></footer>
+    <footer className="ml-showcase-footer"><span>© {year} MICHAEL LEIGH</span><Link to="#top">{t('portfolio.back')} ↑</Link></footer>
   </div>;
 }

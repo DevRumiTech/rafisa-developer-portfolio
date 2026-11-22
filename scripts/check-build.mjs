@@ -10,14 +10,14 @@ import { caseStudies } from '../src/data/projects.js';
 
 // Check generated deliverables, rather than only source templates.
 const initialAssets = new Set();
-const files = ['index.html', '404.html', ...caseStudies.map(project => `projects/${project.slug}/index.html`)];
+const files = ['index.html', 'projects/index.html', '404.html', ...caseStudies.map(project => `projects/${project.slug}/index.html`)];
 for (const file of files) {
   const dom = new JSDOM(await readFile(new URL(`../dist/${file}`, import.meta.url), 'utf8'));
   const document = dom.window.document;
   const project = caseStudies.find(item => file === `projects/${item.slug}/index.html`);
   assert.equal(document.querySelectorAll('meta[name="description"]').length, 1);
   assert.equal(document.querySelector('meta[name="robots"]').content, file === '404.html' ? 'noindex, follow' : 'index, follow');
-  const expectedMetadata = getPageMetadata(project ? `/projects/${project.slug}` : file === '404.html' ? '/404.html' : '/', 'en');
+  const expectedMetadata = getPageMetadata(project ? `/projects/${project.slug}` : file === '404.html' ? '/404.html' : file === 'projects/index.html' ? '/projects' : '/', 'en');
   assert.equal(document.title, expectedMetadata.title);
   for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) {
     assert.equal(document.querySelector(selector).content, expectedMetadata.description);

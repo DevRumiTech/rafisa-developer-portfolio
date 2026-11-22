@@ -35,7 +35,7 @@ try {
       await page.goto(origin);
       await page.locator(`button[lang="${language}"]`).click();
       await page.locator('select').selectOption(theme);
-      for (const path of ['/', '/projects/wordle', '/missing-page']) {
+      for (const path of ['/', '/projects', '/projects/wordle', '/missing-page']) {
         await page.goto(origin + path);
         await page.locator('h1').waitFor();
         const layout = await page.evaluate(() => ({
@@ -67,7 +67,7 @@ try {
         for (const contrast of contrasts) assert.ok(contrast.ratio >= 4.5, `Low text contrast ${contrast.ratio.toFixed(2)}: ${contrast.text}`);
         if (path !== '/missing-page' && [320, 768, 1440].includes(width) && ((language === 'en' && theme === 'light') || (language === 'fr' && theme === 'dark'))) {
           // Reveal scroll-driven sections before full-page capture (reduced motion is already enabled).
-          await page.screenshot({ path: `${output}/${path === "/" ? "home" : "wordle"}-${width}-${language}-${theme}.png`, fullPage: true });
+          await page.screenshot({ path: `${output}/${path === "/" ? "home" : path === "/projects" ? "projects" : "wordle"}-${width}-${language}-${theme}.png`, fullPage: true });
         }
         if (path === '/projects/wordle') {
           for (const button of await page.locator('.screenshot-options button').all()) {
@@ -85,7 +85,7 @@ try {
         if (width === 390 && theme === 'light') {
           const snapshot = await page.getByRole('main').ariaSnapshot();
           if (path === '/') assert.equal(snapshot.split(homeCopy[language].introduction).length - 1, 1, 'Full typewriter sentence must be exposed exactly once');
-          await writeFile(`${output}/accessibility-${path === '/' ? 'home' : path === '/projects/wordle' ? 'wordle' : '404'}-${language}.txt`, snapshot);
+          await writeFile(`${output}/accessibility-${path === '/' ? 'home' : path === '/projects/wordle' ? 'wordle' : path === '/projects' ? 'projects' : '404'}-${language}.txt`, snapshot);
         }
         if (process.env.RAFISA_AXE_MODULE && [390, 1440].includes(width)) {
           await page.addScriptTag({ path: process.env.RAFISA_AXE_MODULE });

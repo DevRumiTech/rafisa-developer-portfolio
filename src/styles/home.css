@@ -403,3 +403,14 @@
     font-size: clamp(3.4rem, 7vw, 7.2rem);
   }
 }
+
+/* Temporary slots share the existing card design but deliberately have no links. */
+.ml-placeholder, .ml-more-projects { display: grid; gap: 24px; align-content: start; }
+.ml-project-fallback { background: var(--ml-panel); color: var(--ml-fg); justify-content: center; overflow-wrap: anywhere; }
+.ml-project-fallback > span { font-size: 1rem; letter-spacing: normal; }
+.ml-showcase-project-grid .ml-project-link { grid-template-columns: 1fr; }
+.ml-copy-email { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px; }
+.ml-copy-email button { padding: 10px 16px; min-height: 44px; border: 1px solid var(--ml-line); border-radius: 6px; background: var(--ml-bg); color: var(--ml-fg); font: inherit; cursor: pointer; }
+.ml-contact-links a { overflow-wrap: anywhere; }
+.ml-projects-page h1 { font-size: clamp(2.5rem, 5vw, 4.3rem); line-height: 1.15; }
+.ml-projects-page .ml-showcase-project-grid, .ml-projects-empty { margin: 36px 0; }

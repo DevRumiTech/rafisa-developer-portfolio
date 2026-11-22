@@ -5,7 +5,7 @@ import { cvDocuments } from '../src/data/cv.js';
 
 // Fail closed if public/ accidentally contributes backups, source maps or private files.
 export function validateReleasePaths(paths, projects = caseStudies, documents = cvDocuments) {
-  const allowed = new Set(['index.html', '404.html', 'monogram.svg', 'robots.txt', 'logos/rafisa.png', 'logos/gaea21.png', 'images/portfolio-headshot-transparent.webp']);
+  const allowed = new Set(['projects/index.html', 'index.html', '404.html', 'monogram.svg', 'robots.txt', 'logos/rafisa.png', 'logos/gaea21.png', 'images/portfolio-headshot-transparent.webp']);
   for (const project of projects) {
     allowed.add(`projects/${project.slug}/index.html`);
     for (const shot of project.screenshots ?? []) allowed.add(shot.src.slice(1));

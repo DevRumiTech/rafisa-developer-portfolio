@@ -71,10 +71,10 @@ test('portfolio regression suite', async (suite) => {
       const keys = (o, prefix = '') => Object.entries(o).flatMap(([k, v]) => typeof v === 'object' ? keys(v, `${prefix}${k}.`) : [`${prefix}${k}`]).sort();
       assert.deepEqual(keys(i18n.getResourceBundle('en', 'translation')), keys(i18n.getResourceBundle('fr', 'translation')));
     });
-    await suite.test('16 route/language/theme combinations with live effects', async () => {
+    await suite.test('route/language/theme combinations with live effects', async () => {
       for (const selectedTheme of ['dark', 'light']) {
         await theme(selectedTheme);
-        for (const path of ['/', ...caseStudies.map(p => `/projects/${p.slug}`), '/projects/missing', '/missing']) {
+        for (const path of ['/', '/projects', ...caseStudies.map(p => `/projects/${p.slug}`), '/projects/missing', '/missing']) {
           await navigate(path);
           for (const code of ['fr', 'en']) {
             await language(code);
@@ -123,6 +123,61 @@ test('portfolio regression suite', async (suite) => {
           }
         }
       }
+    });
+    await suite.test('four cards, automatic year, future projects and honest image fallbacks', async () => {
+      await navigate('/');
+      assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
+      assert.equal(document.querySelectorAll('.ml-placeholder').length, 2);
+      assert.equal(document.querySelectorAll('.ml-placeholder a').length, 0);
+      assert.equal(document.querySelector('.ml-more-projects').getAttribute('href'), '/projects');
+      assert.ok(document.querySelector('.ml-showcase-hero-head').textContent.includes(String(new Date().getFullYear())));
+      assert.ok(document.querySelector('footer').textContent.includes(String(new Date().getFullYear())));
+      const original = [...caseStudies];
+      try {
+        // Test-only entries verify growth without publishing invented project information.
+        for (let index = 2; index <= 5; index++) caseStudies.push({ ...original[0], slug: `test-${index}`, name: `Test ${index}`, screenshots: [] });
+        await navigate('/projects');
+        assert.equal(document.querySelectorAll('.ml-project-link').length, 5);
+        assert.equal(document.querySelectorAll('.ml-project-link img').length, 1);
+        await navigate('/');
+        assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
+        assert.equal(document.querySelectorAll('.ml-project-link').length, 3);
+        assert.equal(document.querySelectorAll('.ml-placeholder').length, 0);
+        const image = document.querySelector('.ml-project-link img');
+        await act(async () => image.dispatchEvent(new dom.window.Event('error')));
+        assert.equal(document.querySelectorAll('.ml-project-link img').length, 0);
+        caseStudies.splice(0);
+        await navigate('/projects');
+        for (const code of ['en', 'fr']) {
+          await language(code);
+          assert.ok(document.querySelector('.ml-projects-empty').textContent.length > 10);
+          assert.equal(document.querySelectorAll('.ml-project-link').length, 0);
+        }
+      } finally { caseStudies.splice(0, caseStudies.length, ...original); }
+      await navigate('/');
+      await language('en');
+    });
+    await suite.test('visible email and clipboard feedback in both languages', async () => {
+      const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+      try {
+        for (const code of ['en', 'fr']) {
+          await language(code);
+          const mail = document.querySelector('a[href="mailto:rumi6864@gmail.com"]');
+          assert.ok(mail.textContent.includes('rumi6864@gmail.com'));
+          let copied;
+          Object.defineProperty(globalThis, 'navigator', { configurable: true, value: { clipboard: { writeText: async value => { copied = value; } } } });
+          await click(document.querySelector('.ml-copy-email button'));
+          assert.equal(copied, 'rumi6864@gmail.com');
+          assert.ok(document.querySelector('.ml-copy-email [role="status"]').textContent.includes(code === 'en' ? 'Email copied' : 'copiée'));
+          Object.defineProperty(globalThis, 'navigator', { configurable: true, value: {} });
+          await click(document.querySelector('.ml-copy-email button'));
+          assert.ok(document.querySelector('.ml-copy-email [role="status"]').textContent.includes(code === 'en' ? 'Could not copy' : 'Copie impossible'));
+        }
+      } finally {
+        if (descriptor) Object.defineProperty(globalThis, 'navigator', descriptor);
+        else delete globalThis.navigator;
+      }
+      await language('en');
     });
     await suite.test('project links, adjacent navigation and first/last boundaries', async () => {
       await navigate('/');
@@ -180,7 +235,7 @@ test('portfolio regression suite', async (suite) => {
           assert.ok(bytes.readUInt32BE(16) > 0 && bytes.readUInt32BE(20) > 0);
         }
       }
-      for (const path of ['/', ...caseStudies.map(p => `/projects/${p.slug}`)]) {
+      for (const path of ['/', '/projects', ...caseStudies.map(p => `/projects/${p.slug}`)]) {
         await navigate(path);
         for (const a of document.querySelectorAll('a[target="_blank"]')) {
           assert.equal(new URL(a.href).protocol, 'https:');
@@ -259,7 +314,7 @@ test('portfolio regression suite', async (suite) => {
         assert.equal(contact.querySelector('a').getAttribute('href'), 'mailto:rumi6864@gmail.com');
         assert.ok(contact.querySelector('a[href="https://github.com/DevRumiTech"]'));
         assert.equal(contact.querySelector('form'), null);
-        assert.equal(contact.querySelector('[role="status"]'), null);
+        assert.equal(contact.querySelector('[role="status"]').textContent, '');
       }
     });
     await suite.test('project contact link targets the real contact section', async () => {

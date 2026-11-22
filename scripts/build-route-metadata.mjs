@@ -20,6 +20,8 @@ function page({ title, description, robots }) {
   return html;
 }
 await writeFile(new URL('../dist/index.html', import.meta.url), page(getPageMetadata('/', 'en')));
+await mkdir(new URL('../dist/projects/', import.meta.url), { recursive: true });
+await writeFile(new URL('../dist/projects/index.html', import.meta.url), page(getPageMetadata('/projects', 'en')));
 for (const project of caseStudies) {
   const directory = new URL(`../dist/projects/${project.slug}/`, import.meta.url);
   await mkdir(directory, { recursive: true });

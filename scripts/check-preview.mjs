@@ -19,7 +19,7 @@ try {
   assert.ok(robots.headers.get('content-type').includes('text/plain'));
   assert.equal(await robots.text(), 'User-agent: *\nAllow: /\n');
   const assets = new Set(['/monogram.svg', '/logos/rafisa.png', '/logos/gaea21.png']);
-  for (const path of ['/', '/404.html', ...caseStudies.map(p => `/projects/${p.slug}/`)]) {
+  for (const path of ['/', '/projects/', '/404.html', ...caseStudies.map(p => `/projects/${p.slug}/`)]) {
     const response = await get(path);
     assert.ok(response.headers.get('content-type').includes('text/html'));
     const dom = new JSDOM(await response.text());
@@ -52,5 +52,5 @@ try {
     assert.equal(bytes.subarray(0, 5).toString(), '%PDF-');
     assert.deepEqual(bytes, await readFile(new URL(`../public${document.href}`, import.meta.url)));
   }
-  console.log(`PASS: loopback HTTP serving for ${caseStudies.length + 2} HTML routes, bundled assets, logos and configured screenshots. Hosting 404 status still requires future configuration.`);
+  console.log(`PASS: loopback HTTP serving for ${caseStudies.length + 3} HTML routes, bundled assets, logos and configured screenshots. Hosting 404 status still requires future configuration.`);
 } finally { await new Promise(resolve => server.httpServer.close(resolve)); }
