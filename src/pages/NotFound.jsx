@@ -1,3 +1,4 @@
+import SiteFooter from '../components/SiteFooter';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useAppearance from "../hooks/useAppearance";
@@ -15,6 +16,7 @@ export default function NotFound({ projectMissing = false }) {
         <h1>404 — {t(projectMissing ? "portfolio.missingProject" : "portfolio.missingPage")}</h1>
         <Link className="text-link" to="/">{t("portfolio.home")}</Link>
       </main>
+    <SiteFooter />
     </div>
   );
 }

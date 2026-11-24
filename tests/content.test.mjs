@@ -73,7 +73,7 @@ test('appearance initialization executes before the app with dark, invalid and b
     const theme = saved === 'dark' ? 'dark' : 'light';
     assert.equal(dom.window.document.documentElement.dataset.theme, theme);
     assert.equal(dom.window.document.documentElement.style.colorScheme, theme);
-    assert.equal(dom.window.document.querySelector('meta[name="theme-color"]').content, theme === 'dark' ? '#192630' : '#f7f9fb');
+    assert.equal(dom.window.document.querySelector('meta[name="theme-color"]').content, theme === 'dark' ? '#151515' : '#FAFAFA');
     dom.window.close();
   }
 });

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Professional information displayed in English and French.
  * Update this file when qualifications or technologies change.
  */
@@ -7,7 +7,7 @@ export const professional = {
     skillsTitle: "Technical skills",
     educationTitle: "Education & certifications",
     softSkillsTitle: "Soft skills",
-    softSkills: ["Calm", "Patient", "Willingness to learn"],
+    softSkills: ["Calm", "Patient", "Problem-solving", "Teamwork", "Attention to detail", "Reliability"],
     skills: [
       {
         category: "Frontend development",
@@ -49,7 +49,7 @@ export const professional = {
     skillsTitle: "Compétences techniques",
     educationTitle: "Formation et certifications",
     softSkillsTitle: "Qualités personnelles",
-    softSkills: ["Calme", "Patient", "Envie d'apprendre"],
+    softSkills: ["Calme", "Patient", "Résolution de problèmes", "Travail en équipe", "Sens du détail", "Fiabilité"],
     skills: [
       {
         category: "Développement frontend",

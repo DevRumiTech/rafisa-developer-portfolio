@@ -15,7 +15,7 @@ export function AppearanceProvider({ children }) {
     document.documentElement.style.colorScheme = theme;
     document.documentElement.dataset.theme = theme;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'dark' ? '#192630' : '#f7f9fb';
+    if (meta) meta.content = theme === 'dark' ? '#151515' : '#FAFAFA';
     try {
       localStorage.setItem("portfolio-theme", theme);
     } catch {

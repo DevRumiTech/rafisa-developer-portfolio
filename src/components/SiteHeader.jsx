@@ -14,7 +14,8 @@ export default function SiteHeader() {
 }
 
 function HeaderContent({ pathname, hash, compact }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const fr = i18n.resolvedLanguage === "fr";
   const { theme, setTheme } = useAppearance();
   const [open, setOpen] = useState(false);
   const button = useRef(null);
@@ -36,16 +37,17 @@ function HeaderContent({ pathname, hash, compact }) {
         button.current?.focus();
       }
     }}>
-      <Link className="wordmark" to={pathname === '/' ? '#top' : '/'} aria-label="ML. — Michael Leigh">ML<span>.</span></Link>
+      <Link className="wordmark" to="/#intro" aria-label={fr ? "ML Michael Leigh, revenir à l’introduction" : "ML Michael Leigh, return to introduction"}>ML</Link>
       <button className="menu-toggle" ref={button} type="button" hidden={!compact}
         aria-controls="primary-navigation" aria-expanded={open}
         onClick={() => setOpen(!open)}>{t(open ? 'portfolio.closeMenu' : 'portfolio.openMenu')}</button>
       <nav ref={navigation} id="primary-navigation" aria-label={t('portfolio.navigation')} hidden={compact && !open}>
-        {['about', 'skills', 'work', 'education', 'contact'].map(section => (
-          <Link key={section} aria-current={pathname === "/" && hash === `#${section}` ? "location" : undefined} to={`/#${section}`} onClick={() => setOpen(false)}>{t(`nav.${section}`)}</Link>
+        {[["top", t("portfolio.home")], ["about", fr ? "À propos de moi" : "About Me"], ["work", t("nav.work")], ["education", fr ? "Expérience et qualifications" : "Experience & Qualifications"], ["cv", "CV"], ["contact", t("nav.contact")]].map(([section, label]) => (
+          <Link key={section} aria-current={(pathname === "/" && (hash === `#${section}` || (!hash && section === "top"))) || (pathname.startsWith("/projects") && section === "work") ? "location" : undefined} to={`/#${section}`} onClick={() => setOpen(false)}>{section === "top" && fr ? "Accueil" : label}</Link>
         ))}
       </nav>
       <div className="header-tools">
+        <Link className="ml-return-intro" to="/#intro" title={fr ? "Quitter le portfolio" : "Leave portfolio"}>{fr ? "Retour à l’introduction" : "Back to Intro"}</Link>
         <LanguageToggle />
         <AppearanceControls theme={theme} setTheme={setTheme} />
       </div>

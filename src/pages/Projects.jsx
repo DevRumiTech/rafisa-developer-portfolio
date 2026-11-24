@@ -1,3 +1,4 @@
+import SiteFooter from '../components/SiteFooter';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAppearance from '../hooks/useAppearance';
@@ -22,5 +23,6 @@ export default function Projects() {
       {additional.length ? <div className="ml-showcase-project-grid">{additional.map(project => <ProjectCard key={project.slug} project={project} language={language} />)}</div> : <p className="ml-projects-empty">{copy.empty}</p>}
       <Link className="text-link" to="/#work">{t('portfolio.home')}</Link>
     </section></main>
+    <SiteFooter />
   </div>;
 }

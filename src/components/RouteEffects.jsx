@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getPageMetadata } from "../utils/pageMetadata";
@@ -32,7 +32,7 @@ export default function RouteEffects() {
     }
   }, [title, description, robots, locale]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const old = previous.current;
     const navigated = old.key !== key || old.pathname !== pathname;
     previous.current = { pathname, hash, key, search };
@@ -42,12 +42,13 @@ export default function RouteEffects() {
     if (!navigated && !hash) return;
     let id;
     try { id = decodeURIComponent(hash.slice(1)); } catch { id = ""; }
-    const target = document.getElementById(id || "top") || document.getElementById("top");
+    const target = document.getElementById(id === "education" && pathname === "/" ? "top" : id || "top") || document.getElementById("top");
     if (target) {
       // Sections need programmatic focus so Tab continues at the destination.
       target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
-      if (hash) target.scrollIntoView();
+      // The main content starts below the header. Home must show both.
+      if (hash && target.id !== "top" && id !== "education" && id !== "intro") target.scrollIntoView();
       else window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [pathname, hash, key, search]);

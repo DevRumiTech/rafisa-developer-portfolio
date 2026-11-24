@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Copy } from 'lucide-react';
 import { projectCopy } from '../data/projectCopy';
 
 export default function CopyEmail({ language }) {
@@ -13,5 +14,5 @@ export default function CopyEmail({ language }) {
       setStatus('failed');
     }
   }
-  return <div className="ml-copy-email"><button type="button" onClick={copyEmail}>{copy.copy}</button><span role="status">{status ? copy[status] : ''}</span></div>;
+  return <div className="ml-copy-email"><button type="button" onClick={copyEmail} aria-label={copy.copy} title={copy.copy}><Copy size={18} aria-hidden="true" /></button><span role="status">{status ? copy[status] : ''}</span></div>;
 }

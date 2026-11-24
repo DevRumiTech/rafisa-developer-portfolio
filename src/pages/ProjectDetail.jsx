@@ -1,3 +1,6 @@
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
+import SiteFooter from '../components/SiteFooter';
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { caseStudies } from "../data/projects";
@@ -36,7 +39,7 @@ export default function ProjectDetail() {
 
       <main id="top" tabIndex={-1} className="project-detail-main">
         <Link className="project-back" to={workDestination}>
-          ← {t("portfolio.detail.back")}
+          <ArrowLeft className="ml-arrow" aria-hidden="true" /> {t("portfolio.detail.back")}
         </Link>
 
         <div className="detail-heading">
@@ -70,7 +73,7 @@ export default function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("portfolio.detail.demo")} ↗<span className="sr-only"> ({t("portfolio.newTab")})</span>
+              {t("portfolio.detail.demo")} <ArrowUpRight className="ml-arrow" aria-hidden="true" /><span className="sr-only"> ({t("portfolio.newTab")})</span>
             </a>
           )}
 
@@ -80,7 +83,7 @@ export default function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("portfolio.detail.source")} ↗<span className="sr-only"> ({t("portfolio.newTab")})</span>
+              <FaGithub className="ml-brand-icon" aria-hidden="true" /> {t("portfolio.detail.source")} <ArrowUpRight className="ml-arrow" aria-hidden="true" /><span className="sr-only"> ({t("portfolio.newTab")})</span>
             </a>
           )}
 
@@ -119,7 +122,7 @@ export default function ProjectDetail() {
           </section>
         </div>
 
-        <p className="project-contact"><Link className="text-link" to="/#contact">{t("portfolio.discussProject")} ↗</Link></p>
+        <p className="project-contact"><Link className="text-link" to="/#contact">{t("portfolio.discussProject")} <ArrowUpRight className="ml-arrow" aria-hidden="true" /></Link></p>
 
         {caseStudies.length > 1 && <nav className="project-pagination" aria-label={t("portfolio.detail.navigation")}>
           {adjacent.filter(([, item]) => item).map(([direction, item]) => (
@@ -131,9 +134,10 @@ export default function ProjectDetail() {
         </nav>}
 
         <Link className="project-back bottom-back" to={workDestination}>
-          ← {t("portfolio.detail.all")}
+          <ArrowLeft className="ml-arrow" aria-hidden="true" /> {t("portfolio.detail.all")}
         </Link>
       </main>
+    <SiteFooter />
     </div>
   );
 }

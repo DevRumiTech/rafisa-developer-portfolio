@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -23,7 +24,7 @@ function Gallery({ screenshots }) {
         ))}
       </div>}
       <Screenshot key={screenshot.src} screenshot={screenshot} language={language} restoreFocus={() => (activeButton.current ?? imageLink.current)?.focus()} />
-      <a ref={imageLink} className="text-link" href={screenshot.src}>{t('portfolio.fullImage')} ↗</a>
+      <a ref={imageLink} className="text-link" href={screenshot.src}>{t('portfolio.fullImage')} <ArrowUpRight className="ml-arrow" aria-hidden="true" /></a>
     </section>
   );
 }

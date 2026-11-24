@@ -1,3 +1,7 @@
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/inter-400.ttf') format('truetype'); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/inter-500.ttf') format('truetype'); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/inter-600.ttf') format('truetype'); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/inter-700.ttf') format('truetype'); }
 /* Shared site primitives; homepage layout lives in home.css. */
 :root {
   font-family: Arial, Helvetica, sans-serif;
@@ -255,3 +259,103 @@ html[data-theme="dark"] body { background: #192630; }
 
 .portfolio .recovery-button { margin-top: 24px; min-height: 44px; padding: 12px 20px; font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); cursor: pointer; }
 .portfolio .recovery-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Shared palette and type apply to every retained route. */
+:root, body { font-family: Inter, sans-serif; background: #FAFAFA; }
+.portfolio.theme-light { --paper: #FAFAFA; --ink: #111111; --accent: #F05032; --line: #E5E7EB; }
+.portfolio.theme-dark { --paper: #151515; --ink: #f1f4f2; --accent: #FF8B70; --line: #383838; }
+.portfolio { font-family: Inter, sans-serif; }
+.portfolio :is(button,select,input,textarea,h1,h2,h3) { font-family: inherit; }
+.portfolio .site-header { background: var(--paper); }
+.portfolio .wordmark { font-size: 26px; font-weight: 600; letter-spacing: -.03em; text-decoration: none; }
+.portfolio .site-header .wordmark { font-size: 20px; font-weight: 500; letter-spacing: -.02em; }
+.portfolio .appearance-field { font-size: 14px; }
+.portfolio .appearance-field select { border-radius: 6px; }
+html[data-theme="dark"], html[data-theme="dark"] body { background: #151515; }
+
+/* Compact segmented language and appearance controls. */
+.portfolio .site-header .wordmark { font-size: 26px; font-weight: 600; letter-spacing: -.025em; }
+.portfolio .language-toggle, .portfolio .ml-theme-switch { display: inline-flex; gap: 0; margin: 0; align-items: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--paper); }
+.portfolio .language-toggle button, .portfolio .ml-theme-switch button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; min-width: 44px; padding: 0 9px; font: inherit; font-size: 13px; font-weight: 500; color: var(--ink); border: 0; background: transparent; cursor: pointer; }
+.portfolio .language-toggle button[aria-pressed="true"] { color: #111111; background: #F05032; text-decoration: none; font-weight: 600; }
+.portfolio .ml-theme-switch button[aria-pressed="true"] { color: #111; background: #F4C430; }
+.portfolio .ml-theme-switch button:focus-visible, .portfolio .language-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+.portfolio .site-header nav a[aria-current="location"] { color: var(--accent); text-decoration: none; box-shadow: inset 0 -2px var(--accent); }
+.portfolio .shared-header .appearance-panel, .portfolio .ml-welcome-top .appearance-panel { padding: 0; border: 0; background: transparent; }
+
+/* Shared footer and outer canvas. */
+html, body, #root { margin: 0; border: 0; min-height: 100%; }
+html[data-theme="dark"], html[data-theme="dark"] body, html[data-theme="dark"] #root { background: #151515; }
+html[data-theme="light"], html[data-theme="light"] body, html[data-theme="light"] #root { background: #FAFAFA; }
+.portfolio { display: flex; flex-direction: column; min-height: 100svh; }
+.portfolio > main { flex: 1; }
+.portfolio .ml-site-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; border-top: 1px solid var(--line); padding: 12px clamp(20px,4vw,60px); font-size: 12px; color: var(--ink); background: var(--paper); }
+.ml-footer-links, .ml-social-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; min-width: 0; }
+.ml-social-links a { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; overflow-wrap: anywhere; }
+.ml-social-links svg { width: 18px; height: 18px; flex-shrink: 0; }
+.ml-site-footer .ml-social-links a { min-height: 24px; }
+.ml-site-footer .ml-social-links svg { width: 15px; height: 15px; }
+.portfolio .ml-site-footer a:hover { color: var(--accent); }
+.portfolio.theme-dark .technology-mysql { color: #8CC6F0 !important; }
+@media (max-width: 600px) { .ml-site-footer { align-items: flex-start; flex-direction: column; } .ml-footer-links { gap: 8px 14px; } }
+
+.ml-brand-icon { width: 1em; height: 1em; vertical-align: -.12em; }
+
+/* Git-orange accent, accessible text shades, and consistent interaction states. */
+.portfolio.theme-light { --accent: #B83B20; --git-orange: #F05032; --social-linkedin: #006699; }
+.portfolio.theme-dark { --accent: #FF8B70; --git-orange: #F05032; --social-linkedin: #80C5F2; }
+.portfolio { font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.portfolio :is(h1,h2,h3,h4,h5,h6,button,select,input,textarea) { font-family: inherit; }
+.portfolio .site-header nav a { position: relative; box-shadow: none; text-decoration: none; }
+.portfolio .site-header nav a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--git-orange); transform: scaleX(0); transform-origin: center; transition: transform .22s ease; }
+.portfolio .site-header nav a[aria-current="location"] { color: var(--accent); box-shadow: none; }
+.portfolio .site-header nav a[aria-current="location"]::after { transform: scaleX(1); }
+.portfolio .ml-social-links a.ml-social-email { color: var(--accent); }
+.portfolio .ml-social-links a.ml-social-github { color: var(--ink); }
+.portfolio .ml-social-links a.ml-social-linkedin { color: var(--social-linkedin); }
+.portfolio .ml-social-links a, .portfolio .ml-social-links svg { transition: color .22s ease, transform .22s ease, background-color .22s ease; }
+.portfolio .language-toggle button, .portfolio .ml-theme-switch button { transition: background-color .22s ease, color .22s ease; }
+.portfolio .language-toggle button[aria-pressed="true"] { background: var(--git-orange); color: #111111; }
+@media (hover:hover) and (pointer:fine) {
+  .portfolio .site-header nav a:hover::after { transform: scaleX(1); }
+  .portfolio .site-header nav a:hover { color: var(--accent); }
+  .portfolio .ml-social-links a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+  .portfolio .ml-social-links a:hover svg { transform: translateY(-2px) scale(1.12); }
+  .portfolio .language-toggle button:not([aria-pressed="true"]):hover, .portfolio .ml-theme-switch button:not([aria-pressed="true"]):hover { background: var(--line); color: var(--accent); }
+  .portfolio .detail-actions a:hover, .portfolio .screenshot-error button:hover, .portfolio .recovery-button:hover { border-color: var(--git-orange); box-shadow: 0 3px 10px #0002; transform: translateY(-2px); }
+}
+.portfolio .detail-actions a, .portfolio .screenshot-error button, .portfolio .recovery-button { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, color .22s ease; }
+@media (prefers-reduced-motion:reduce) {
+  .portfolio .ml-social-links a:hover svg, .portfolio .detail-actions a:hover, .portfolio .screenshot-error button:hover, .portfolio .recovery-button:hover { transform: none; }
+}
+@media (hover:hover) and (pointer:fine) {
+  .portfolio .ml-social-links a:is(.ml-social-email,.ml-social-github,.ml-social-linkedin):hover { color: var(--accent); }
+}
+
+/* Shared typography, page-title palette and navigation icon dimensions. */
+.portfolio { --page-title: var(--ink); --ui-arrow-size: 16px; }
+.portfolio .ml-arrow { width: var(--ui-arrow-size); height: var(--ui-arrow-size); stroke-width: 1.8; flex: 0 0 auto; vertical-align: -3px; transition: transform .25s ease; }
+.portfolio :is(.project-back,.detail-actions a,.text-link) { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.portfolio :is(.detail-heading,.section-shell,.ml-projects-page) > h1 { color: var(--page-title); font-weight: 600; font-family: inherit; }
+.portfolio .technology-logo { transition: transform .25s ease, filter .25s ease; }
+@media (hover:hover) and (pointer:fine) {
+  .portfolio li:hover > .technology-logo { transform: scale(1.16); filter: drop-shadow(0 0 6px currentColor); }
+  .portfolio :is(a,button):hover .ml-arrow { transform: translateX(3px); }
+  .portfolio :is(.project-back):hover .ml-arrow { transform: translateX(-3px); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .portfolio .ml-arrow, .portfolio .technology-logo { transition: none; }
+  .portfolio :is(a,button):hover .ml-arrow, .portfolio li:hover > .technology-logo { transform: none; }
+}
+
+/* Route destinations receive programmatic keyboard positioning, not a visible
+   border around the entire page. Individual interactive elements retain their
+   existing keyboard indicators. */
+.portfolio :is(main, section)[tabindex="-1"]:focus { outline: none; }
+
+/* Direct return to the welcome screen from any portfolio page. */
+.portfolio .header-tools .ml-return-intro { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 7px 12px; border: 1px solid #3776AB; border-radius: 8px; color: #3776AB; font-size: 12px; font-weight: 600; white-space: nowrap; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
+.portfolio.theme-dark .header-tools .ml-return-intro { color: #79B4E4; border-color: #79B4E4; }
+@media (hover:hover) { .portfolio .header-tools .ml-return-intro:hover { background: #3776AB; color: #fff; border-color: #3776AB; box-shadow: 0 3px 12px #3776AB40; } }
+@media (max-width:600px) { .portfolio .header-tools .ml-return-intro { order: 1; } }
+@media (prefers-reduced-motion:reduce) { .portfolio .header-tools .ml-return-intro { transition: none; } }

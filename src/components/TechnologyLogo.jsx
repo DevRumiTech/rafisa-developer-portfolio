@@ -1,4 +1,4 @@
-﻿import { SiReact, SiTypescript, SiJavascript, SiHtml5, SiNodedotjs, SiExpress, SiPython, SiFlask, SiPhp, SiMysql, SiPostgresql, SiSqlite, SiVitest, SiPytest, SiVite, SiGit, SiGithub, SiFigma } from "react-icons/si";
+import { SiReact, SiTypescript, SiJavascript, SiHtml5, SiNodedotjs, SiExpress, SiPython, SiFlask, SiPhp, SiMysql, SiPostgresql, SiSqlite, SiVitest, SiPytest, SiVite, SiGit, SiGithub, SiFigma } from "react-icons/si";
 import { FaCss3Alt } from "react-icons/fa";
 import { Globe, Palette, PenTool, MonitorCheck } from "lucide-react";
 
@@ -51,7 +51,7 @@ export default function TechnologyLogo({ name }) {
 
   return (
     <Icon
-      className="technology-logo"
+      className={`technology-logo${name === "MySQL" ? " technology-mysql" : ""}`}
       style={{ color }}
       aria-hidden="true"
     />

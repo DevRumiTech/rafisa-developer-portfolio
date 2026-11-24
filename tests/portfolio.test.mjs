@@ -54,14 +54,37 @@ test('portfolio regression suite', async (suite) => {
     window.dispatchEvent(new dom.window.PopStateEvent('popstate'));
   });
   const language = (code) => click(document.querySelector(`button[lang="${code}"]`));
-  const theme = async (value) => act(async () => {
-    const select = document.querySelector('select');
-    select.value = value;
-    select.dispatchEvent(new dom.window.Event('change', { bubbles: true }));
-  });
+  const theme = (value) => click(document.querySelector(`.appearance-panel button[aria-label="${i18n.t(`portfolio.${value}`)}"]`));
   const meta = (name, attr = 'name') => document.querySelector(`meta[${attr}="${name}"]`)?.content;
   try {
     await act(async () => root.render(createElement(StrictMode, null, createElement(App))));
+    await suite.test('welcome is localized, enters accessibly and persists for this session', async () => {
+      assert.ok(document.querySelector('.ml-welcome'));
+      assert.equal(document.querySelector('.ml-enter').textContent, 'Enter Portfolio');
+      assert.equal(document.querySelector('nav'), null);
+      await language('fr');
+      assert.equal(document.querySelector('.ml-enter').textContent, 'Entrer dans le portfolio');
+      await language('en');
+      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(true));
+      await click(document.querySelector('.ml-enter'));
+      assert.equal(document.activeElement.id, 'top');
+      assert.equal(scrolled, 'window-top');
+      assert.equal(window.sessionStorage.getItem('portfolio-entered'), 'true');
+      await navigate('/projects/wordle');
+      assert.ok(document.querySelector('.detail-heading'));
+      await navigate('/');
+      assert.equal(document.querySelector('.ml-welcome'), null);
+      await click(document.querySelector('.ml-return-intro'));
+      assert.ok(document.querySelector('.ml-intro-card'));
+      assert.equal(window.location.hash, '#intro');
+      await click(document.querySelector('.ml-enter'));
+      assert.equal(window.location.hash, '#top');
+      assert.equal(document.activeElement.id, 'top');
+      assert.equal(scrolled, 'window-top');
+      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(false));
+      await navigate('/');
+      document.activeElement.blur();
+    });
     await suite.test('blocked storage startup and initial keyboard entry', () => {
       assert.equal(i18n.language, 'en');
       assert.equal(document.activeElement, document.body);
@@ -83,7 +106,7 @@ test('portfolio regression suite', async (suite) => {
             assert.ok(document.querySelector(`.portfolio.theme-${selectedTheme}`), `${path} retains ${selectedTheme}`);
             assert.equal(document.documentElement.style.colorScheme, selectedTheme);
             assert.equal(document.querySelectorAll('h1').length, 1);
-            assert.equal(document.querySelector('meta[name="theme-color"]').content, selectedTheme === 'dark' ? '#192630' : '#f7f9fb');
+            assert.equal(document.querySelector('meta[name="theme-color"]').content, selectedTheme === 'dark' ? '#151515' : '#FAFAFA');
             const ids = [...document.querySelectorAll('[id]')].map(element => element.id);
             assert.equal(new Set(ids).size, ids.length, 'IDs must be unique');
             for (const attr of ['aria-labelledby', 'aria-describedby', 'aria-controls']) {
@@ -97,8 +120,8 @@ test('portfolio regression suite', async (suite) => {
             for (const image of document.querySelectorAll('img')) assert.ok(image.hasAttribute('alt'));
             assert.equal(document.querySelectorAll('[tabindex]').length, [...document.querySelectorAll('[tabindex]')].filter(item => Number(item.getAttribute('tabindex')) <= 0).length);
 
-            assert.equal(document.querySelector('select').value, selectedTheme);
-            assert.equal(document.querySelector('.appearance-field span').textContent, code === 'fr' ? 'Apparence' : 'Appearance');
+            assert.equal(document.querySelector(`.appearance-panel button[aria-label="${i18n.t(`portfolio.${selectedTheme}`)}"]`).getAttribute('aria-pressed'), 'true');
+            assert.equal(document.querySelector('.appearance-panel').getAttribute('aria-label'), code === 'fr' ? 'Apparence' : 'Appearance');
             const project = caseStudies.find(p => path === `/projects/${p.slug}`);
             assert.equal(meta('robots'), path.endsWith('missing') ? 'noindex, follow' : 'index, follow');
             assert.equal(meta('og:title', 'property'), document.title);
@@ -124,13 +147,13 @@ test('portfolio regression suite', async (suite) => {
         }
       }
     });
-    await suite.test('four cards, automatic year, future projects and honest image fallbacks', async () => {
+    await suite.test('four cards, automatic year, future projects and simple project icons', async () => {
       await navigate('/');
       assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
       assert.equal(document.querySelectorAll('.ml-placeholder').length, 2);
       assert.equal(document.querySelectorAll('.ml-placeholder a').length, 0);
       assert.equal(document.querySelector('.ml-more-projects').getAttribute('href'), '/projects');
-      assert.ok(document.querySelector('.ml-showcase-hero-head').textContent.includes(String(new Date().getFullYear())));
+      assert.equal(document.querySelector('.ml-dashboard-description').textContent, homeCopy[i18n.resolvedLanguage].introduction);
       assert.ok(document.querySelector('footer').textContent.includes(String(new Date().getFullYear())));
       const original = [...caseStudies];
       try {
@@ -143,8 +166,8 @@ test('portfolio regression suite', async (suite) => {
         assert.equal(document.querySelectorAll('.ml-showcase-card').length, 4);
         assert.equal(document.querySelectorAll('.ml-project-link').length, 3);
         assert.equal(document.querySelectorAll('.ml-placeholder').length, 0);
-        const image = document.querySelector('.ml-project-link img');
-        await act(async () => image.dispatchEvent(new dom.window.Event('error')));
+        assert.equal(document.querySelectorAll('.ml-wordle-icon svg rect').length, 9);
+        assert.equal(document.querySelectorAll('.ml-project-link .ml-showcase-visual svg').length, 3);
         assert.equal(document.querySelectorAll('.ml-project-link img').length, 0);
         caseStudies.splice(0);
         await navigate('/projects');
@@ -173,7 +196,8 @@ test('portfolio regression suite', async (suite) => {
           assert.equal(document.querySelectorAll('.ml-placeholder a, a[href=""], a[href="#"]').length, 0);
           for (const card of document.querySelectorAll('.ml-placeholder')) {
             assert.ok(card.querySelector('svg'));
-            assert.equal(card.querySelectorAll('.ml-project-stack li').length, 2);
+            assert.deepEqual([...card.querySelectorAll('.ml-project-stack li')].map(li => li.textContent), ['React', 'Node.js', 'Express', 'MySQL']);
+            assert.equal(card.querySelectorAll('[aria-disabled="true"]').length, 3);
           }
           await click(document.querySelector('.ml-more-projects'));
           const moreLinks = [...document.querySelectorAll('.ml-project-link')].map(a => a.getAttribute('href'));
@@ -189,6 +213,7 @@ test('portfolio regression suite', async (suite) => {
       await language('en');
     });
     await suite.test('visible email and clipboard feedback in both languages', async () => {
+      await navigate('/#contact');
       const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
       try {
         for (const code of ['en', 'fr']) {
@@ -302,7 +327,7 @@ test('portfolio regression suite', async (suite) => {
         await click(nav.querySelector('a'));
         button = document.querySelector('.menu-toggle');
         assert.equal(button.getAttribute('aria-expanded'), 'false');
-        assert.equal(document.activeElement.id, 'about');
+        assert.equal(document.activeElement.id, 'top');
       }
       await click(document.querySelector('.menu-toggle'));
       await act(async () => window.matchMedia('(max-width: 600px)').update(false));
@@ -336,12 +361,13 @@ test('portfolio regression suite', async (suite) => {
       dom.window.HTMLElement.prototype.animate = animate;
     });
     await suite.test('contact is bilingual and opens email without claiming delivery', async () => {
-      await navigate('/');
+      await navigate('/#contact');
       for (const code of ['en', 'fr']) {
         await language(code);
         const contact = document.getElementById('contact');
         assert.equal(contact.querySelector('h2').textContent, homeCopy[code].contact);
-        assert.equal(contact.querySelector(':scope > p').textContent, homeCopy[code].contactTagline);
+        assert.ok(contact.querySelector('.ml-page-intro').textContent.includes(code === 'en' ? 'recruitment enquiries' : 'demande de recrutement'));
+        assert.ok(contact.querySelector('.ml-contact-location').textContent.includes(code === 'en' ? 'Vaud, Switzerland' : 'Vaud, Suisse'));
         assert.equal(contact.querySelector('a').getAttribute('href'), 'mailto:rumi6864@gmail.com');
         assert.ok(contact.querySelector('a[href="https://github.com/DevRumiTech"]'));
         assert.equal(contact.querySelector('form'), null);
@@ -376,7 +402,8 @@ test('portfolio regression suite', async (suite) => {
       await navigate('/');
       assert.ok(document.querySelector('.wordmark').getAttribute('aria-label').includes(document.querySelector('.wordmark').textContent));
       assert.deepEqual([...document.querySelectorAll('main > section')].map(s => s.id),
-        ['about', 'skills', 'work', 'experience', 'education', 'hobbies', 'contact']);
+        ['', '', 'work', '']);
+      assert.deepEqual([...document.querySelectorAll('main > section')].map(s => s.className), ['ml-dashboard-hero', 'ml-dashboard-tech', 'ml-dashboard-projects', 'ml-dashboard-shortcuts']);
       assert.equal(document.querySelectorAll('.ml-showcase').length, 1);
       assert.equal(document.querySelector('.hero'), null, 'old homepage removed');
       assert.equal(document.querySelectorAll('.ml-project-link').length, 1);
@@ -412,7 +439,7 @@ test('portfolio regression suite', async (suite) => {
       }
     });
     await suite.test('CV contact state is honest in both languages', async () => {
-      await navigate('/');
+      await navigate('/#cv');
       for (const code of ['en', 'fr']) {
         await language(code);
         const cv = document.getElementById('cv');
@@ -431,7 +458,7 @@ test('portfolio regression suite', async (suite) => {
       await act(async () => i18n.changeLanguage('fr-CH'));
       assert.equal(document.documentElement.lang, 'fr');
       assert.equal(document.querySelector('button[lang="fr"]').getAttribute('aria-pressed'), 'true');
-      assert.equal(document.querySelector('.appearance-field span').textContent, 'Apparence');
+      assert.equal(document.querySelector('.appearance-panel').getAttribute('aria-label'), 'Apparence');
       assert.equal(meta('og:locale', 'property'), 'fr_CH');
       await language('en');
     });
@@ -454,7 +481,7 @@ test('portfolio regression suite', async (suite) => {
       await navigate('/#about');
       assert.equal(document.querySelector('#primary-navigation [aria-current]').hash, '#about');
       await navigate('/projects/wordle#features');
-      assert.equal(document.querySelector('#primary-navigation [aria-current]'), null);
+      assert.equal(document.querySelector('#primary-navigation [aria-current]').hash, '#work');
       assert.equal(document.querySelector('.detail-contents [aria-current]').hash, '#features');
     });
     await suite.test('animation failure cannot blank a route', async () => {
@@ -521,7 +548,10 @@ test('portfolio regression suite', async (suite) => {
       await act(async () => window.matchMedia('(max-width: 600px)').update(false));
       assert.equal(document.activeElement, document.querySelector('#primary-navigation a'));
       await click(document.querySelector('#primary-navigation a[href="/#education"]'));
-      assert.equal(document.activeElement.id, 'education');
+      assert.equal(document.activeElement.id, 'top');
+      assert.equal(scrolled, 'window-top');
+      assert.ok(document.querySelector('#education'));
+      assert.ok(document.querySelector('#experience'));
     });
     await suite.test('retired preview route does not expose a second homepage', async () => {
       await navigate('/design-preview');
@@ -531,36 +561,39 @@ test('portfolio regression suite', async (suite) => {
       assert.equal(window.location.pathname, '/');
       assert.ok(document.querySelector('.ml-showcase'));
     });
-    await suite.test('complete typewriter sentence is accessible and reduced motion updates live', async () => {
-      await navigate('/');
-      for (const code of ['en', 'fr']) {
-        await language(code);
-        assert.equal(document.querySelector('.ml-final-typed .sr-only').textContent, homeCopy[code].introduction);
-        await click(document.querySelector('.finish-typing'));
-        assert.equal(document.querySelector('.typed-text').textContent, homeCopy[code].introduction);
-        assert.equal(document.querySelector('.finish-typing').getAttribute('aria-disabled'), 'true');
+    await suite.test('approved introduction is complete and accessible in both motion preferences', async () => {
+      for (const reduced of [true, false]) {
+        await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(reduced));
+        await navigate('/');
+        for (const code of ['en', 'fr']) {
+          await language(code);
+          const introduction = document.querySelector('.ml-dashboard-description');
+          assert.equal(introduction.textContent, homeCopy[code].introduction);
+          assert.equal(introduction.closest('[aria-hidden="true"]'), null);
+          assert.equal(document.querySelectorAll('.ml-dashboard-description').length, 1);
+        }
       }
       await language('en');
-      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(true));
-      assert.equal(document.querySelector('.typed-text').textContent, homeCopy.en.introduction);
-      assert.equal(document.querySelector('.typed-caret'), null);
-      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(false));
     });
     await suite.test('professional facts and skills remain complete in both languages', async () => {
       await navigate('/');
       for (const code of ['en', 'fr']) {
         await language(code);
+        await navigate('/#skills');
         for (const group of professional[code].skills) {
           for (const skill of group.items) assert.ok(document.querySelector('#skills').textContent.includes(skill));
         }
+        assert.equal(document.querySelectorAll('.ml-showcase-skill-group li svg').length, professional[code].skills.reduce((n,g) => n+g.items.length,0));
+        await navigate('/#education');
         for (const item of professional[code].education) {
           for (const value of Object.values(item)) assert.ok(document.querySelector('#education').textContent.includes(value));
         }
-        assert.equal(document.querySelectorAll('.ml-showcase-skill-group li svg').length, professional[code].skills.reduce((n,g) => n+g.items.length,0));
         const experience = document.querySelector('#experience').textContent;
         for (const key of ['rafisaRole','gaeaRole','rafisaLocation','gaeaLocation','rafisaDates','gaeaDates']) assert.ok(experience.includes(i18n.t(`portfolio.${key}`)));
-        assert.ok(experience.includes(code === 'en' ? '19 October 2026 – 14 January 2027' : '19 octobre 2026 – 14 janvier 2027'));
+        assert.ok(experience.includes(code === 'en' ? '19 October 2026 – 31 January 2027' : '19 octobre 2026 – 31 janvier 2027'));
+        await navigate('/#about');
         assert.equal(document.querySelectorAll('#hobbies li').length, 3);
+        for (const skill of professional[code].softSkills) assert.ok(document.querySelector('.ml-about-soft').textContent.includes(skill));
       }
     });
     await suite.test('entrance observer handles live reduced motion, focus and setup failures', async () => {
@@ -644,13 +677,35 @@ test('portfolio regression suite', async (suite) => {
         assert.equal(document.querySelector('.detail-contents a[href="#screenshots"]'), null);
       } finally { caseStudies[0].screenshots = original; }
     });
-    await suite.test('typed layout reserves the final sentence without double announcement', async () => {
-      await navigate('/');
-      for (const code of ['en', 'fr']) {
-        await language(code);
-        assert.equal(document.querySelector('.typed-reserve').textContent, homeCopy[code].introduction);
-        assert.equal(document.querySelector('.typed-visual').getAttribute('aria-hidden'), 'true');
-        assert.equal(document.querySelectorAll('.ml-final-typed .sr-only').length, 1);
+    await suite.test('intro stages retain their timing, prevent duplicate entry and clean up on unmount', async () => {
+      const { default: WelcomeIntro } = await server.ssrLoadModule('/src/components/WelcomeIntro.jsx');
+      const container = document.createElement('div');
+      document.body.append(container);
+      const temporaryRoot = createRoot(container);
+      const originalSet = window.setTimeout, originalClear = window.clearTimeout;
+      const timers = new Map();
+      let entered = 0, next = 0;
+      window.setTimeout = (callback, delay) => { const id = ++next; timers.set(id, { callback, delay }); return id; };
+      window.clearTimeout = id => timers.delete(id);
+      try {
+        await act(async () => temporaryRoot.render(createElement(WelcomeIntro, { language: 'en', copy: homeCopy.en, theme: 'light', setTheme() {}, onEnter() { entered++; } })));
+        await click(container.querySelector('.ml-enter'));
+        await click(container.querySelector('.ml-enter'));
+        assert.ok(container.querySelector('.ml-intro-phase-orbit'));
+        assert.deepEqual([...timers.values()].map(t => t.delay), [2400, 3200]);
+        assert.equal(entered, 0);
+        await act(async () => [...timers.values()].find(t => t.delay === 2400).callback());
+        assert.ok(container.querySelector('.ml-intro-phase-transition'));
+        assert.equal(container.querySelector('.ml-intro-grid').getAttribute('aria-hidden'), 'true');
+        assert.equal(container.querySelector('.ml-intro-grid').hasAttribute('inert'), true);
+        assert.equal(container.querySelector('[role="status"]').textContent, 'Opening portfolio…');
+        await act(async () => [...timers.values()].find(t => t.delay === 3200).callback());
+        assert.equal(entered, 1);
+      } finally {
+        await act(async () => temporaryRoot.unmount());
+        assert.equal(timers.size, 0);
+        window.setTimeout = originalSet; window.clearTimeout = originalClear;
+        container.remove();
       }
     });
     await suite.test('CV downloads expose each available language independently without inventing missing files', async () => {
@@ -664,12 +719,12 @@ test('portfolio regression suite', async (suite) => {
         assert.equal(container.querySelector('a').getAttribute('href'), '/cv/test-en.pdf');
         assert.equal(container.querySelector('a').download, 'test-en.pdf');
         assert.equal(container.querySelector('a').hreflang, 'en');
-        assert.ok(container.textContent.includes('PDF · 2 KB'));
+        assert.ok(container.textContent.includes('PDF · 2 pages · 2 KB'));
         await act(async () => temporaryRoot.render(createElement(CvDownload, { documents, language: 'fr', copy: homeCopy.fr })));
         assert.equal(container.querySelector('a').hreflang, 'en');
-        assert.ok(container.textContent.includes('English'));
+        assert.ok(container.textContent.includes('CV anglais'));
         assert.equal(container.querySelector('a[hreflang="fr"]'), null);
-        assert.ok(container.textContent.includes('PDF · 2 Ko'));
+        assert.ok(container.textContent.includes('PDF · 2 pages · 2 Ko'));
         documents.fr = { href: '/cv/test-fr.pdf', filename: 'test-fr.pdf', bytes: 1024 };
         await act(async () => temporaryRoot.render(createElement(CvDownload, { documents, language: 'fr', copy: homeCopy.fr })));
         assert.equal(container.querySelectorAll('a').length, 2);
@@ -692,10 +747,10 @@ test('portfolio regression suite', async (suite) => {
     await suite.test('every homepage section link resolves and moves focus in both languages', async () => {
       for (const code of ['en', 'fr']) {
         await navigate('/'); await language(code);
-        const destinations = [...document.querySelectorAll('#primary-navigation a, .ml-showcase-footer a')].map(a => a.getAttribute('href'));
+        const destinations = [...document.querySelectorAll('#primary-navigation a, .ml-showcase-footer a[href^="/#"]')].map(a => a.getAttribute('href'));
         for (const href of destinations) {
           await click(document.querySelector(`a[href="${href}"]`));
-          assert.equal(document.activeElement.id, href.split('#')[1]);
+          assert.equal(document.activeElement.id, href.endsWith('#education') ? 'top' : href.split('#')[1]);
           assert.equal(document.documentElement.lang, code);
         }
       }
@@ -707,7 +762,7 @@ test('portfolio regression suite', async (suite) => {
         setItem: (key, value) => preferences.set(key, value),
       };
       await act(async () => root.render(createElement(StrictMode, null, createElement(App, { key: 'restored-session' }))));
-      assert.equal(document.querySelector('select').value, 'dark');
+      assert.equal(document.querySelector(`.appearance-panel button[aria-label="${i18n.t('portfolio.dark')}"]`).getAttribute('aria-pressed'), 'true');
       await theme('light');
       assert.equal(preferences.get('portfolio-theme'), 'light');
       await language('en');
