@@ -31,6 +31,7 @@ try {
     page.on('pageerror', error => runtimeErrors.push(error.message));
     // Keep QA local, even if an accidental external asset is introduced.
     await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    let currentPath = "intro setup";
     try {
       // A fresh session must permit direct project links before showing the homepage welcome.
       await page.goto(origin + '/projects/wordle');
@@ -48,12 +49,13 @@ try {
       await page.locator(`button[lang="${language}"]`).click();
       await page.locator('.ml-theme-switch button').nth(theme === 'light' ? 0 : 1).click();
       for (const path of ['/', '/#about', '/#skills', '/#education', '/#experience', '/#hobbies', '/#cv', '/#contact', '/projects', '/projects/wordle', '/missing-page']) {
+        currentPath = path;
         await page.goto(origin + path);
         await page.getByRole('heading', { level: 1 }).waitFor();
         const layout = await page.evaluate(() => ({
           width: innerWidth, scroll: document.documentElement.scrollWidth,
           lang: document.documentElement.lang, theme: document.documentElement.dataset.theme,
-          h1: document.querySelectorAll('h1, h2[aria-level="1"]').length,
+          h1: document.querySelectorAll('h1').length,
           surface: getComputedStyle(document.querySelector('.portfolio')).backgroundColor,
           brokenImages: [...document.images].filter(img => img.complete && img.naturalWidth === 0).map(img => img.src),
         }));
@@ -69,11 +71,12 @@ try {
           assert.equal(cards.length, 4);
           for (const card of cards) {
             assert.ok(Math.abs(card.width - cards[0].width) <= 1, 'Equal card widths');
-            assert.ok(Math.abs(card.height - cards[0].height) <= 1, 'Equal card heights');
+            const rowStart = cards.find(other => Math.abs(other.y - card.y) <= 1);
+            assert.ok(Math.abs(card.height - rowStart.height) <= 1, 'Equal card heights within each row');
             assert.ok(Math.abs(card.visualHeight - cards[0].visualHeight) <= 1, 'Equal image heights');
           }
-          assert.equal(new Set(cards.map(card => Math.round(card.x))).size, width <= 600 ? 1 : width <= 1000 ? 2 : 4);
-          assert.equal(new Set(cards.map(card => Math.round(card.y))).size, width <= 600 ? 4 : width <= 1000 ? 2 : 1);
+          assert.equal(new Set(cards.map(card => Math.round(card.x))).size, width <= 600 ? 1 : 2);
+          assert.equal(new Set(cards.map(card => Math.round(card.y))).size, width <= 600 ? 4 : 2);
           assert.equal(await page.locator('.ml-placeholder a, a[href=""]').count(), 0);
         }
         if (path === '/projects') {
@@ -134,7 +137,10 @@ try {
         await page.keyboard.press('Enter');
         await page.waitForFunction(() => document.activeElement.id === 'top', undefined, { timeout: 3000 });
         } else {
-          assert.equal(await page.evaluate(() => document.activeElement.id), path === '/#education' ? 'top' : path.split('#')[1]);
+          const expectedTarget = path === '/#education' ? 'top' : path.split('#')[1];
+          await page.waitForFunction(id => document.activeElement.id === id, expectedTarget, { timeout: 3000 });
+          assert.equal(await page.evaluate(() => document.activeElement.id), expectedTarget);
+          if (path === '/#education') await page.waitForFunction(() => scrollY === 0);
         }
         if (width <= 600) {
           await page.locator('.menu-toggle').click();
@@ -164,7 +170,7 @@ try {
       }
       assert.deepEqual(runtimeErrors, []);
     } catch (error) {
-      errors.push({ width, language, theme, message: error.message });
+      errors.push({ width, language, theme, path: currentPath, message: error.message });
       await page.screenshot({ path: `${output}/failure-${width}-${language}-${theme}.png`, fullPage: true });
     } finally { await context.close(); }
   }
@@ -206,10 +212,11 @@ try {
       await page.locator('.ml-showcase-skill-group li').first().hover();
       assert.equal(await page.locator('.ml-showcase-skill-group li').first().evaluate(el => getComputedStyle(el).transform), 'none');
       await page.goto(origin + '/#education');
+      await page.waitForFunction(() => scrollY === 0);
       assert.equal(await page.locator('#education h2').evaluate(el => getComputedStyle(el).opacity), '1');
       assert.equal(await page.evaluate(() => scrollY), 0);
       results.push({ width, motion: 'normal-to-reduced', repeatEntry: true, homeScrollTop: true });
-    } catch (error) { errors.push({ width, motion: true, message: error.message }); }
+    } catch (error) { errors.push({ width, motion: true, url: page.url(), message: error.message, stack: error.stack }); }
     finally { await context.close(); }
   }
   await writeFile(`${output}/results.json`, JSON.stringify({ engine: engineName, browser: browser.version(), results, errors }, null, 2));

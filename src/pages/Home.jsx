@@ -32,12 +32,14 @@ export default function Home() {
   const details = professional[language];
   const { theme, setTheme } = useAppearance();
   const { hash } = useLocation();
+  let section;
+  try { section = decodeURIComponent(hash.slice(1)); } catch { section = ""; }
   const navigate = useNavigate();
   const [welcome, setWelcome] = useState(() => {
     if (hash || enteredThisSession) return false;
     try { return window.sessionStorage.getItem(welcomeKey) !== 'true'; } catch { return true; }
   });
-  const showIntro = hash === '#intro' || (welcome && !hash);
+  const showIntro = section === 'intro' || (welcome && !hash);
   const entered = useRef(false);
   useLayoutEffect(() => {
     if (!showIntro && entered.current) {
@@ -55,18 +57,18 @@ export default function Home() {
     entered.current = true;
     try { window.sessionStorage.setItem(welcomeKey, 'true'); } catch { /* Keep the in-memory session fallback. */ }
     setWelcome(false);
-    if (hash === '#intro') navigate('/#top');
+    if (section === 'intro') navigate('/#top');
   };
   const fr = language === 'fr';
-  let section;
-  try { section = decodeURIComponent(hash.slice(1)); } catch { section = ''; }
   const view = ['about', 'skills', 'education', 'experience', 'hobbies', 'contact', 'cv'].includes(section) ? section : 'home';
   const tech = ['React', 'TypeScript', 'Node.js', 'Express', 'MySQL', 'Python', 'Git'];
   const cv = cvDocuments[language];
   const qualification = fr ? 'Expérience et qualifications' : 'Experience & Qualifications';
+  const ExperienceHeading = view === 'experience' ? 'h1' : 'h2';
+  const HobbiesHeading = view === 'hobbies' ? 'h1' : 'h2';
   const experienceSection = (
 <section className="ml-showcase-experience ml-qualification-section" id="experience" aria-labelledby="experience-title">
-        <span className="ml-showcase-kicker">03 / {c.experience}</span><h2 aria-level={view === 'experience' ? 1 : 2} id="experience-title" data-animate>{c.experience}</h2>
+        <span className="ml-showcase-kicker">03 / {c.experience}</span><ExperienceHeading className="ml-view-heading" id="experience-title" data-animate>{c.experience}</ExperienceHeading>
         <div className="ml-jobs">{['rafisa', 'gaea'].map(employer => <article className="ml-showcase-job" data-animate key={employer}>
           <div className="ml-qualification-logo"><img src={`/logos/${employer === 'gaea' ? 'gaea21' : employer}.png`} alt="" width="78" height="58" loading="lazy" decoding="async" /></div>
           <div><span className="ml-showcase-kicker">{t(`portfolio.${employer === 'rafisa' ? 'current' : 'previous'}`)}</span><h3>{employer === 'rafisa' ? 'Rafisa' : t('portfolio.gaeaName')}</h3><p>{t(`portfolio.${employer}Role`)}</p><p>{t(`portfolio.${employer}Location`)}</p><p className="employment-dates">{t(`portfolio.${employer}Dates`)}</p></div>
@@ -75,7 +77,7 @@ export default function Home() {
   );
   const hobbiesSection = (
 <section className="ml-showcase-hobbies" id="hobbies" aria-labelledby="hobbies-title">
-        <span className="ml-showcase-kicker">05 / {c.hobbies}</span><h2 aria-level={view === 'hobbies' ? 1 : 2} id="hobbies-title" data-animate>{c.hobbies}</h2>
+        <span className="ml-showcase-kicker">05 / {c.hobbies}</span><HobbiesHeading className="ml-view-heading" id="hobbies-title" data-animate>{c.hobbies}</HobbiesHeading>
         <ul>{[[Hand, c.karate], [Guitar, c.guitar], [Gamepad2, c.games]].map(([Icon, label]) => <li key={label}><span className="ml-showcase-hobby-icon" aria-hidden="true"><Icon /></span>{label}</li>)}</ul>
       </section>
   );
@@ -120,7 +122,7 @@ export default function Home() {
         <div className="ml-detail-top"><Link className="ml-inline-link" to="/#top"><ArrowLeft className="ml-arrow" aria-hidden="true" /> {t('portfolio.home')}</Link></div>
         {view === 'about' && <>
           <section id="about" className="ml-detail-about" aria-labelledby="about-title">
-            <h2 aria-level="1" id="about-title">{fr ? 'À propos de moi' : 'About Me'}</h2>
+            <h1 className="ml-view-heading" id="about-title">{fr ? 'À propos de moi' : 'About Me'}</h1>
             <p>{fr ? 'Je suis développeur full-stack, basé dans le canton de Vaud en Suisse. Je m’intéresse autant aux interfaces web qu’aux API et aux bases de données.' : 'I am a full-stack developer based in Vaud, Switzerland. I enjoy working across web interfaces, APIs and databases.'}</p>
             <p>{c.background}</p>
             <p>{fr ? 'J’aime transformer des idées en applications fonctionnelles et comprendre comment les différentes parties d’un système logiciel fonctionnent ensemble.' : 'I enjoy turning ideas into working applications and understanding how different parts of a software system work together.'}</p>
@@ -132,7 +134,7 @@ export default function Home() {
         {view === 'skills' && <>
       <section className="ml-showcase-details" id="skills" aria-labelledby="skills-title">
         <span className="ml-showcase-kicker">01 / {t('nav.skills')}</span>
-        <h2 aria-level="1" id="skills-title" data-animate>{details.skillsTitle}</h2>
+        <h1 className="ml-view-heading" id="skills-title" data-animate>{details.skillsTitle}</h1>
         <div className="ml-showcase-skills">
           {details.skills.map(group => <div className="ml-showcase-skill-group" data-animate key={group.category}>
             <h3>{group.category}</h3><ul>{group.items.map(item => <li key={item}><TechnologyLogo name={item} /><span>{item}</span></li>)}</ul>
@@ -162,13 +164,13 @@ export default function Home() {
         </>}
         {view === 'contact' && <>
       <section className="ml-showcase-contact" id="contact" aria-labelledby="contact-title">
-        <span className="ml-showcase-kicker">06 / {c.contact}</span><h2 aria-level="1" id="contact-title" data-animate>{c.contact}</h2><h3 className="ml-contact-subtitle">{fr ? 'Prenons contact' : "Let’s connect"}</h3><p className="ml-page-intro">{fr ? 'Pour toute demande de recrutement ou pour discuter de postes en développement full-stack, vous pouvez me contacter par les moyens ci-dessous.' : 'For recruitment enquiries or to discuss full-stack development roles, please contact me through the channels below.'}</p>
+        <span className="ml-showcase-kicker">06 / {c.contact}</span><h1 className="ml-view-heading" id="contact-title" data-animate>{c.contact}</h1><h3 className="ml-contact-subtitle">{fr ? 'Prenons contact' : "Let’s connect"}</h3><p className="ml-page-intro">{fr ? 'Pour toute demande de recrutement ou pour discuter de postes en développement full-stack, vous pouvez me contacter par les moyens ci-dessous.' : 'For recruitment enquiries or to discuss full-stack development roles, please contact me through the channels below.'}</p>
         <SocialLinks email />
         <p className="ml-contact-location"><MapPin size={19} aria-hidden="true" />{fr ? 'Vaud, Suisse' : 'Vaud, Switzerland'}</p>
       </section>
 
         </>}
-        {view === 'cv' && <section className="ml-showcase-contact" aria-labelledby="cv-title"><h2 aria-level="1" id="cv-title">{t('portfolio.cvTitle')}</h2><p className="ml-page-intro">{fr ? 'Téléchargez mon CV pour en savoir plus sur mon expérience professionnelle, ma formation et mes compétences techniques.' : 'Download my CV for further information about my professional experience, education and technical skills.'}</p><div className="ml-contact-links ml-cv-section"><CvDownload documents={cvDocuments} language={language} copy={c} /></div></section>}
+        {view === 'cv' && <section className="ml-showcase-contact" aria-labelledby="cv-title"><h1 className="ml-view-heading" id="cv-title">{t('portfolio.cvTitle')}</h1><p className="ml-page-intro">{fr ? 'Téléchargez mon CV pour en savoir plus sur mon expérience professionnelle, ma formation et mes compétences techniques.' : 'Download my CV for further information about my professional experience, education and technical skills.'}</p><div className="ml-contact-links ml-cv-section"><CvDownload documents={cvDocuments} language={language} copy={c} /></div></section>}
       </>}
     </main>
     <SiteFooter />

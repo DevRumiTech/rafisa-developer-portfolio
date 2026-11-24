@@ -16,6 +16,8 @@ export default function SiteHeader() {
 function HeaderContent({ pathname, hash, compact }) {
   const { t, i18n } = useTranslation();
   const fr = i18n.resolvedLanguage === "fr";
+  let sectionId;
+  try { sectionId = decodeURIComponent(hash.slice(1)); } catch { sectionId = ""; }
   const { theme, setTheme } = useAppearance();
   const [open, setOpen] = useState(false);
   const button = useRef(null);
@@ -43,7 +45,7 @@ function HeaderContent({ pathname, hash, compact }) {
         onClick={() => setOpen(!open)}>{t(open ? 'portfolio.closeMenu' : 'portfolio.openMenu')}</button>
       <nav ref={navigation} id="primary-navigation" aria-label={t('portfolio.navigation')} hidden={compact && !open}>
         {[["top", t("portfolio.home")], ["about", fr ? "À propos de moi" : "About Me"], ["work", t("nav.work")], ["education", fr ? "Expérience et qualifications" : "Experience & Qualifications"], ["cv", "CV"], ["contact", t("nav.contact")]].map(([section, label]) => (
-          <Link key={section} aria-current={(pathname === "/" && (hash === `#${section}` || (!hash && section === "top"))) || (pathname.startsWith("/projects") && section === "work") ? "location" : undefined} to={`/#${section}`} onClick={() => setOpen(false)}>{section === "top" && fr ? "Accueil" : label}</Link>
+          <Link key={section} aria-current={(pathname === "/" && (sectionId === section || (!hash && section === "top"))) || (pathname.startsWith("/projects") && section === "work") ? "location" : undefined} to={`/#${section}`} onClick={() => setOpen(false)}>{section === "top" && fr ? "Accueil" : label}</Link>
         ))}
       </nav>
       <div className="header-tools">

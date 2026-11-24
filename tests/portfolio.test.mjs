@@ -97,7 +97,7 @@ test('portfolio regression suite', async (suite) => {
     await suite.test('route/language/theme combinations with live effects', async () => {
       for (const selectedTheme of ['dark', 'light']) {
         await theme(selectedTheme);
-        for (const path of ['/', '/projects', ...caseStudies.map(p => `/projects/${p.slug}`), '/projects/missing', '/missing']) {
+        for (const path of ['/', '/#about', '/#skills', '/#education', '/#experience', '/#hobbies', '/#cv', '/#contact', '/projects', ...caseStudies.map(p => `/projects/${p.slug}`), '/projects/missing', '/missing']) {
           await navigate(path);
           for (const code of ['fr', 'en']) {
             await language(code);
@@ -261,6 +261,15 @@ test('portfolio regression suite', async (suite) => {
       assert.equal(document.activeElement.id, 'top');
       await navigate('/#%61bout');
       assert.equal(document.activeElement.id, 'about');
+      assert.equal(document.querySelector('#primary-navigation [aria-current]').hash, '#about');
+      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(true));
+      await navigate('/#%69ntro');
+      assert.ok(document.querySelector('.ml-welcome'));
+      assert.equal(document.activeElement.id, 'intro');
+      await click(document.querySelector('.ml-enter'));
+      assert.equal(window.location.hash, '#top');
+      assert.equal(scrolled, 'window-top');
+      await act(async () => window.matchMedia('(prefers-reduced-motion: reduce)').update(false));
       await navigate('/#%invalid');
       assert.equal(document.activeElement.id, 'top');
       await navigate('/#does-not-exist');
@@ -365,7 +374,7 @@ test('portfolio regression suite', async (suite) => {
       for (const code of ['en', 'fr']) {
         await language(code);
         const contact = document.getElementById('contact');
-        assert.equal(contact.querySelector('h2').textContent, homeCopy[code].contact);
+        assert.equal(contact.querySelector('h1').textContent, homeCopy[code].contact);
         assert.ok(contact.querySelector('.ml-page-intro').textContent.includes(code === 'en' ? 'recruitment enquiries' : 'demande de recrutement'));
         assert.ok(contact.querySelector('.ml-contact-location').textContent.includes(code === 'en' ? 'Vaud, Switzerland' : 'Vaud, Suisse'));
         assert.equal(contact.querySelector('a').getAttribute('href'), 'mailto:rumi6864@gmail.com');

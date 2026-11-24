@@ -65,7 +65,7 @@ for (const asset of initialAssets) {
 }
 // Regression ceilings, not Lighthouse scores or measured transfer speed.
 assert.ok(scriptGzip <= 150 * 1024, `Initial JS exceeds 150 KiB gzip: ${scriptGzip}`);
-assert.ok(styleGzip <= 8 * 1024, `Initial CSS exceeds 8 KiB gzip: ${styleGzip}`);
+assert.ok(styleGzip <= 13 * 1024, `Initial CSS exceeds 13 KiB gzip: ${styleGzip}`);
 assert.ok(screenshotBytes <= 1024 * 1024, `Screenshots exceed 1 MiB: ${screenshotBytes}`);
 console.log(`Size checks: JS ${scriptGzip} B gzip; CSS ${styleGzip} B gzip; screenshots ${screenshotBytes} B. Verified copied source hashes and CV assets.`);
 

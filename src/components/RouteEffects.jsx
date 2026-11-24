@@ -49,7 +49,29 @@ export default function RouteEffects() {
       target.focus({ preventScroll: true });
       // The main content starts below the header. Home must show both.
       if (hash && target.id !== "top" && id !== "education" && id !== "intro") target.scrollIntoView();
-      else window.scrollTo({ top: 0, behavior: "instant" });
+      else {
+        window.scrollTo({ top: 0, behavior: "instant" });
+        // Native fragment navigation can scroll to the anchor after React renders.
+        // Reapply the top position after that navigation has settled.
+        if (id === "education" || id === "intro" || id === "top") {
+          let secondFrame;
+          const firstFrame = window.requestAnimationFrame(() => {
+            secondFrame = window.requestAnimationFrame(() => {
+              // Native fragment navigation can also reset keyboard focus.
+              // Restore it at the view's start without scrolling to the education subsection.
+              if (id === "education" && target.isConnected &&
+                  (document.activeElement === document.body || document.activeElement?.id === "education")) {
+                target.focus({ preventScroll: true });
+              }
+              window.scrollTo({ top: 0, behavior: "instant" });
+            });
+          });
+          return () => {
+            window.cancelAnimationFrame(firstFrame);
+            if (secondFrame !== undefined) window.cancelAnimationFrame(secondFrame);
+          };
+        }
+      }
     }
   }, [pathname, hash, key, search]);
 

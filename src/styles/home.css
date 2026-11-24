@@ -12,7 +12,7 @@
   --ml-line: #383838; --ml-accent: #FF8B70; --ml-panel: #202020;
 }
 .ml-showcase :is(h1,h2,h3,p) { color: inherit; margin: 0; }
-.ml-showcase h2 { font-size: clamp(2rem, 4.6vw, 4.3rem); font-weight: 660; letter-spacing: -.04em; line-height: 1.14; margin: 12px 0 36px; overflow-wrap: anywhere; }
+.ml-showcase h2, .ml-showcase h1:where(.ml-view-heading) { font-size: clamp(2rem, 4.6vw, 4.3rem); font-weight: 660; letter-spacing: -.04em; line-height: 1.14; margin: 12px 0 36px; overflow-wrap: anywhere; }
 .ml-showcase h3 { font-size: clamp(1rem, 1.6vw, 1.4rem); line-height: 1.4; }
 .ml-showcase a:focus-visible, .ml-showcase button:focus-visible, .ml-showcase select:focus-visible { outline: 3px solid var(--ml-accent); outline-offset: 5px; }
 .ml-showcase main > section { padding: clamp(42px, 6vw, 88px) clamp(22px, 5.5vw, 100px); scroll-margin-top: 20px; }
@@ -176,7 +176,7 @@
 .portfolio.ml-showcase { --ml-link: #1E40AF; }
 .portfolio.ml-showcase-dark { --ml-link: #9bb8ff; }
 .ml-showcase main { max-width: 1280px; margin-inline: auto; }
-.ml-showcase h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 600; letter-spacing: -.025em; }
+.ml-showcase h2, .ml-showcase h1:where(.ml-view-heading) { font-size: clamp(28px, 3vw, 36px); font-weight: 600; letter-spacing: -.025em; }
 .ml-showcase main > section { padding: 56px clamp(22px, 5vw, 64px); }
 .ml-showcase .ml-showcase-hero { padding-top: 64px; padding-bottom: 56px; }
 .ml-showcase-hero h1 { font-size: 48px; font-weight: 600; line-height: 1.15; letter-spacing: -.035em; margin: 24px 0 12px; }
@@ -279,7 +279,7 @@
 .ml-showcase .ml-detail-view { width: min(100%, 1100px); flex: 1; padding: 24px 36px; }
 .ml-detail-top { margin-bottom: 16px; }
 .ml-showcase .ml-detail-view > section { padding: 24px 0; border: 0; background: transparent; }
-.ml-detail-view h2 { font-size: 28px; margin: 0 0 18px; }
+.ml-detail-view h2, .ml-detail-view h1:where(.ml-view-heading) { font-size: 28px; margin: 0 0 18px; }
 .ml-detail-view .ml-showcase-kicker { display: none; }
 .ml-detail-view .ml-showcase-job .ml-showcase-kicker { display: block; }
 .ml-detail-about p { margin: 0 0 12px; max-width: 760px; }
@@ -330,7 +330,7 @@
 .ml-showcase .ml-enter { background: var(--git-orange); border-color: var(--git-orange); color: #111111; }
 .ml-detail-view .ml-qualification-title { font-size: 30px; margin: 10px 0 8px; }
 .ml-showcase .ml-detail-view > .ml-qualification-section { padding: 18px 0; }
-.ml-detail-view .ml-qualification-section > h2 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; margin: 0 0 14px; }
+.ml-detail-view .ml-qualification-section > :is(h2,h1:where(.ml-view-heading)) { font-size: 20px; font-weight: 600; letter-spacing: -.015em; margin: 0 0 14px; }
 .ml-qualification-section .ml-jobs, .ml-education-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
 .ml-qualification-section .ml-showcase-job, .ml-qualification-section .ml-showcase-education-row { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; padding: 18px 20px; background: var(--ml-panel); border: 1px solid var(--ml-line); border-radius: 8px; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
 .ml-qualification-section .ml-showcase-job > div { width: 100%; }
@@ -377,7 +377,7 @@
 
 /* Unified detail cards and compact, naturally scrolling desktop dashboard. */
 .ml-showcase .ml-dashboard-intro h1, .ml-showcase .ml-qualification-title,
-.ml-showcase .ml-detail-view > section:not(.ml-qualification-section):first-of-type > h2,
+.ml-showcase .ml-detail-view > section:not(.ml-qualification-section):first-of-type > :is(h2,h1:where(.ml-view-heading)),
 .ml-showcase .ml-projects-page > h1 { color: var(--page-title); }
 /* Professional title: plain text with a hover-only glow. */
 .ml-showcase .ml-dashboard-intro .ml-role {
@@ -401,7 +401,7 @@
 @media (prefers-reduced-motion:reduce) {
   .ml-showcase .ml-dashboard-intro .ml-role { transition: none; }
 }
-.ml-showcase .ml-detail-view > section:not(.ml-qualification-section):first-of-type > h2 { font-weight: 600; }
+.ml-showcase .ml-detail-view > section:not(.ml-qualification-section):first-of-type > :is(h2,h1:where(.ml-view-heading)) { font-weight: 600; }
 .ml-showcase .ml-dashboard { padding-top: 42px; padding-bottom: 46px; }
 .ml-dashboard .ml-dashboard-hero { padding-bottom: 38px !important; }
 .ml-dashboard-tech ul { gap: 16px; margin-bottom: 18px; }
